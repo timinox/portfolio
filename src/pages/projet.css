@@ -1,0 +1,48 @@
+
+/* switch project */
+.switch-project{
+	display: flex;
+	margin: 0 auto 200px auto;
+}
+.switch-project a{
+	width: 50%;
+}
+.switch-project a:hover img{
+	opacity: 0.3;
+}
+
+.prev-project, .next-project{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+.switch-project h3{
+	position: absolute;
+	font-family: "Anybody", "Poppins", "Monument", sans-serif;
+	font-variation-settings: 'wght' 350, 'wdth' 110; 
+	font-size: 1.8rem;
+}
+.switch-project a:hover h3{
+	animation: switchProject 1s infinite alternate;
+}
+.prev-pro-img, .next-pro-img{
+	width: 100%;
+	max-height: 300px;
+	overflow: hidden;
+}
+.prev-pro-img img, .next-pro-img img{
+	max-height: inherit;
+	width: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 200ms;
+}
+@keyframes switchProject{
+    0%{
+        font-variation-settings: 'wght' 350, 'wdth' 110; 
+    }
+    100%{
+        font-variation-settings: 'wght' 900, 'wdth' 140; 
+    }
+}
