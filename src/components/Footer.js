@@ -10,7 +10,7 @@ const Footer = () => {
       <p>
         par <strong>Timothé Joubert</strong>
       </p>
-      <p>timothejoubert26@gmail.com</p>
+      <p>test deployement</p>
     </footer>
   );
 };
