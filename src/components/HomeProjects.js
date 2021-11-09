@@ -1,79 +1,57 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {
-  motion,
-  useViewportScroll,
-  useTransform,
-  useMotionValue,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import ProgressiveImage from "react-progressive-image";
 
 import "./HomeProjects.css";
 
 const customEase = [0.43, 0.13, 0.23, 0.96];
-const transitionPage = { duration: 2, ease: customEase };
-const transitionContainer = { duration: 0.5, delay: 0.2 };
-const transitionImg = { duration: 0.3 };
+const transitionPage = { duration: 0.6, ease: customEase };
+let direction;
 
 function ImagesProjects({ slug, imgUrl, index }) {
-  let containerTransi, imgTransi;
-  if (window.location.pathname === `/projet/${slug}`) {
-    containerTransi = {
-      margin: 0,
-      width: 0,
-    };
-    imgTransi = {
-      y: "100%",
-    };
-  }
+  // if (window.location.pathname === `/projet/${slug}`) {
+  // }
   {
     if (imgUrl.includes(".mp4")) {
       return (
-        <motion.div
-          className="container-img"
-          key={index}
-          exit={containerTransi}
-          transition={transitionContainer}
-        >
-          <motion.video
-            muted
-            autoPlay
-            loop
-            exit={imgTransi}
-            transition={transitionImg}
-          >
+        <div className="container-img" key={index}>
+          <video muted autoPlay loop>
             <source
               src={window.location.origin + `/img/${slug}-${imgUrl}`}
               type="video/mp4"
             />
-          </motion.video>
-        </motion.div>
+          </video>
+        </div>
       );
     } else {
       return (
-        <motion.div
-          className="container-img"
-          key={index}
-          exit={containerTransi}
-          transition={transitionContainer}
-        >
-          <motion.img
+        <div className="container-img" key={index}>
+          <img
             src={window.location.origin + `/img/${slug}-${imgUrl}`}
             alt="alt text"
-            exit={imgTransi}
-            transition={transitionImg}
           />
-        </motion.div>
+        </div>
       );
     }
   }
 }
 function MainImgProject({ projet, index }) {
+  // const refThumb = useRef(null);
+  // const getThumbSize = () => {
+  //   let thumbSize = {
+  //     width: refThumb.current.innerHeight,
+  //     height: refThumb.current.innerWidth,
+  //   };
+  // };
+  // useEffect(() => {
+  //   getThumbSize();
+  // }, []);
+
   return (
     <div className="container-img home-thumb" key={index}>
       <ProgressiveImage
-        src={window.location.origin + `/img/${projet.slug}-thumb.jpg`}
+        src={window.location.origin + `/img/${projet.slug}-thumb-hd.jpg`}
         placeholder={window.location.origin + `/img/${projet.slug}-thumb.jpg`}
       >
         {(src) => <motion.img src={src} alt="alt text" />}
@@ -110,10 +88,10 @@ const ParseLetter = ({ word }) => {
     </>
   );
 };
-let direction;
-const transitionScroll = { duration: 0.5, ease: customEase };
+
 function ContentMarquee({ projet, index, image, containerInfo }) {
   const { scrollYProgress } = useViewportScroll();
+  const [translateY, setTranslateY] = useState(0);
   // console.log(
   //   containerInfo.top / document.body.offsetHeight,
   //   containerInfo.end / document.body.offsetHeight
@@ -125,7 +103,7 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
     direction = -window.innerWidth;
   }
 
-  let translateY = useTransform(
+  let move = useTransform(
     scrollYProgress,
     [
       containerInfo.top / document.body.offsetHeight,
@@ -134,23 +112,19 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
     [0, direction]
   );
 
-  // console.log(
-  //   containerInfo.top / document.body.offsetHeight,
-  //   containerInfo.end / document.body.offsetHeight
-  // );
+  useEffect(() => {
+    setTranslateY(move);
+  });
+
   return (
-    <article className="project" key={index}>
-      <Link
-        to={`/projet/${projet.slug}`}
-        onClick={() => {
-          var scrollYProgress = 0;
-        }}
-      >
-        <motion.div
-          className="project-info"
-          exit={{ opacity: 0 }}
-          transition={transitionPage}
-        >
+    <motion.article
+      className="project"
+      key={index}
+      exit={{ x: -direction * 1.8, opacity: 0 }}
+      transition={transitionPage}
+    >
+      <Link to={`/projet/${projet.slug}`}>
+        <motion.div className="project-info">
           <h3>
             <ParseLetter word={projet.name} />
           </h3>
@@ -179,7 +153,7 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
           })}
         </motion.div>
       </Link>
-    </article>
+    </motion.article>
   );
 }
 
@@ -201,9 +175,13 @@ const HomeProjects = ({ data, projets, imageDetails }) => {
 
   return (
     <section className="container-projects" ref={projectsContainer}>
-      <div className="title-projet">
+      <motion.div
+        className="title-projet"
+        exit={{ opacity: 0 }}
+        transition={transitionPage}
+      >
         <h3>Projets</h3>
-      </div>
+      </motion.div>
 
       {projets &&
         projets.map((projet, i) => {

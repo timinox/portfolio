@@ -13,18 +13,14 @@ import Projet from "./pages/projet";
 import TimData from "./TimData.js";
 
 //Styles
-import "./App.scss";
+// import "./App.scss";
 import "./App.css";
 
 function App() {
-  const data = TimData;
+  const [data, setData] = useState();
   const [darkTheme, setDarkTheme] = useState();
   const [colorTheme, setcolorTheme] = useState();
-  const [gradientDegrees, setgradientDegrees] = useState();
-
-  useEffect(() => {
-    getCurrentTheme();
-  }, []);
+  const [gradientDegrees, setgradientDegrees] = useState(135);
 
   const getCurrentTheme = () => {
     const colorTheme = window.localStorage.getItem("website_theme");
@@ -59,10 +55,13 @@ function App() {
     setgradientDegrees(degrees);
   };
 
-  const imageDetails = {
-    width: 400,
-    height: 300,
-  };
+  useEffect(() => {
+    setData(TimData);
+  }, [data]);
+
+  useEffect(() => {
+    getCurrentTheme();
+  }, []);
 
   return (
     <div
@@ -72,36 +71,37 @@ function App() {
     >
       <div
         className="grain-effect"
-        style={{ "--angleGradient": gradientDegrees + "deg" }}
+        style={{
+          backgroundImage: "url(" + window.location.origin + "/grain.png)",
+          "--angleGradient": gradientDegrees + "deg",
+        }}
       ></div>
-      <Router>
-        <Route
-          render={({ location }) => (
-            <AnimatePresence initial={true}>
-              <Switch location={location} key={location.pathname}>
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <Home
-                      imageDetails={imageDetails}
-                      data={data}
-                      toggleTheme={toggleTheme}
-                    />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/projet/:slug"
-                  render={() => (
-                    <Projet data={data} imageDetails={imageDetails} />
-                  )}
-                />
-              </Switch>
-            </AnimatePresence>
-          )}
-        />
-      </Router>
+      {data && (
+        <Router>
+          <Route
+            render={({ location }) => (
+              <AnimatePresence initial={true}>
+                <Switch location={location} key={location.pathname}>
+                  <Route
+                    exact
+                    path="/"
+                    render={() => (
+                      <Home data={data} toggleTheme={toggleTheme} />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/projet/:slug"
+                    render={() => (
+                      <Projet data={data} toggleTheme={toggleTheme} />
+                    )}
+                  />
+                </Switch>
+              </AnimatePresence>
+            )}
+          />
+        </Router>
+      )}
     </div>
   );
 }

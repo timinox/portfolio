@@ -14,7 +14,6 @@ code {
     monospace;
 }
 
-
 /*************************/
 /* stylesheet de timothé */
 /*************************/
@@ -187,13 +186,12 @@ src: url('/fonts/clash-grotesk.woff2') format("woff2");
   --light-color-2: rgba(34, 34, 34, 0.06);
   --light-color-1: rgba(34, 34, 34, 0.02);  
 
-  --bg-color: #eef0f5;
+  --bg-color: #c4c4C4;
 }
 .container-pages{
   position: relative;
   background-color: var(--bg-color);
   color: var(--light-color);
-  overflow-x: hidden;
   min-height: 100vh
 }
 /***********/
@@ -208,6 +206,12 @@ src: url('/fonts/clash-grotesk.woff2') format("woff2");
 *::selection {
   background-color: var(--light-color);
   color: var(--dark-color);
+}
+body{
+  overflow-x: hidden;
+}
+body.no-scroll {
+  overflow-y: hidden;
 }
 
 h1, h2, h3{
@@ -240,16 +244,17 @@ li{
   /* animation: grain 0.9s steps(1, end) infinite; */
   pointer-events: none;
 }
-.dark_mode .grain-effect{
+.light_mode .grain-effect{
   /* mix-blend-mode: darken; */
   /* filter: contrast(110%) brightness(300%); */
   /* background: linear-gradient( var(--angleGradient), #00000094, white), url(https://grainy-gradients.vercel.app/noise.svg); */
+  opacity: 0.1;
 }
 .grain-effect{
   animation: grain2 1s steps(1) infinite;
   mix-blend-mode: multiply;
-
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/paper-pattern.png");
+  opacity: 0.25;
+  /* background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/paper-pattern.png"); */
 
 }
 @keyframes grain{ 
@@ -317,3 +322,5 @@ li{
     transform: translate(-10px, 10px);
   }
 }
+
+

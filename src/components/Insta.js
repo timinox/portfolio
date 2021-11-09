@@ -10,6 +10,7 @@ function RepeatDiv({ posX, posY, index }) {
     width = elToDupli.current.offsetWidth / 2;
     height = elToDupli.current.offsetHeight / 2;
   }, []);
+
   return (
     <div
       className={`container-img-insta img-${index}`}
@@ -26,15 +27,14 @@ function RepeatDiv({ posX, posY, index }) {
   );
 }
 let i = 1;
-let rmv = 0;
 let cDiv, newDiv;
 function Insta() {
   const [mousePos, setmousePos] = useState({ x: 0, y: 0 });
   const [customDiv, setCustomDiv] = useState([]);
+  const [stopMove, setStopMove] = useState(true);
   const containerInsta = useRef(null);
   const help = useRef(null);
-  let timerStart, timerEnd;
-  let generateDiv = false;
+  let timerEnd;
 
   function MoveOnInsta(e) {
     const scrollDist = containerInsta.current.getBoundingClientRect().top;
@@ -56,25 +56,30 @@ function Insta() {
     setCustomDiv(cDiv);
 
     clearTimeout(timerEnd);
-
     help.current.classList.remove("help-on");
+
     containerInsta.current.classList.remove("hide");
-    timerEnd = setTimeout(mouseStopped, 1500);
-    removeDiv(newDiv.copyNumber);
-    cDiv.splice(i, 1);
-    setCustomDiv(cDiv);
+    timerEnd = setTimeout(mouseStopped, 2000);
   };
 
-  function removeDiv(i) {
-    console.log(cDiv, i);
+  function mouseStopped() {
+    setStopMove(true);
+    help.current.classList.add("help-on");
+    containerInsta.current.classList.add("hide");
   }
 
-  function mouseStopped() {
+  function removeImg() {
     setTimeout(() => {
-      help.current.classList.add("help-on");
-      // containerInsta.current.classList.add("hide");
-    }, 2500);
+      if (cDiv && cDiv.length > 0) {
+        cDiv.splice(0, 1);
+        setCustomDiv(cDiv);
+      }
+    }, 400);
   }
+
+  useEffect(() => {
+    removeImg();
+  }, [removeImg]);
 
   return (
     <section className="playground-insta">

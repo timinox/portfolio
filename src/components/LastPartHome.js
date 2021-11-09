@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./LastPartHome.css";
+
+import { mapRange, clamp } from "../utils";
 import Insta from "./Insta";
+
+import { motion, useViewportScroll, useTransform } from "framer-motion";
+
 function About({ data }) {
   return (
     <section className="container-cv">
@@ -38,7 +43,11 @@ function About({ data }) {
             <p>De 4 à 6 mois à partir de février 2021</p>
           </div>
           <div className="box-cv">
-            <a href="test.html" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.screen-club.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h4 className="link">Screen Club</h4>
               <svg
                 width="18"
@@ -54,7 +63,11 @@ function About({ data }) {
             <p>Développeur indépendant - Lyon </p>
           </div>
           <div className="box-cv">
-            <a href="test.html" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://monolith.agency/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h4>Monolith</h4>
               <svg
                 width="18"
@@ -70,7 +83,11 @@ function About({ data }) {
             <p>Studio de design graphique et de création web - Montréal</p>
           </div>
           <div className="box-cv">
-            <a href="test.html" target="_blank" rel="noopener noreferrer">
+            <a
+              href="http://www.lesabattoirs.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h4>Les abattoirs</h4>
               <svg
                 width="18"
@@ -120,15 +137,54 @@ function About({ data }) {
     </section>
   );
 }
-
+let startContainer;
+let stopContainer;
 function Contact({ data }) {
+  const { scrollYProgress } = useViewportScroll();
+  const containerContact = useRef(null);
+  const imgLength = 15;
+  // const [startContainer, setStartContainer] = useState(0);
+  // const [stopContainer, setStopContainer] = useState(0);
+
+  const initContainerSize = () => {
+    startContainer =
+      containerContact.current.getBoundingClientRect().top +
+      window.innerHeight / 2 +
+      window.pageYOffset;
+    stopContainer =
+      startContainer -
+      window.innerHeight / 2 +
+      containerContact.current.clientHeight;
+  };
+
+  let value = clamp(
+    Math.floor(
+      mapRange(
+        scrollYProgress.current,
+        startContainer / document.body.scrollHeight,
+        stopContainer / document.body.scrollHeight,
+        0,
+        imgLength
+      )
+    ),
+    0,
+    imgLength
+  );
+  console.log(value);
+  useEffect(() => {
+    initContainerSize();
+    // console.log(value, startContainer, stopContainer);
+  });
+
   return (
-    <section className="container-contact">
-      <h5>N'hésitez pas à me contacter pour </h5>
-      <h5>
-        Je suis ouvert à tout projet de site web, motion design et d'identité de
-        marque
-      </h5>
+    <section className="container-contact" ref={containerContact}>
+      <h5>N'hésitez pas à me contacter</h5>
+      <div className="container-img-contact">
+        <img
+          src={window.location.origin + `/sprite-at/_At_Sign-${value}.png`}
+          alt="alt text"
+        />
+      </div>
     </section>
   );
 }

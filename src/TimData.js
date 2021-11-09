@@ -4,16 +4,17 @@ const TimData = [
     name: "timothé joubert",
     tagline: "designer front-end & développeur",
     texte:
-      "Je suis un designer graphique &développeur freelance, Je crée des systèmes graphiques innovants en alliant",
+      "Je suis designer graphique &développeur freelance, Je crée des systèmes graphiques innovants en alliant",
     domaines: ["identité de marque", "site web", "Motion design"],
   },
   [
     {
       name: "Electrochoc #13",
       slug: "elec",
-      domaine: "Expérience intéractive",
+      domaine: "Teaser de festival",
       date: "2020",
       projectLink: "Lien",
+      tagline: "Un teaser vidéo dynamique et immersif.",
       description:
         "J'ai réalisé le teaser du festival Électrochoc 2018-2019 de la scène de musique: Les Abattoirs. En me basant sur la musique Électronique, j'ai cherché à retranscrire l'ambiance rythmée dans un univers profond et immersif. Collaboration avec l'incroyable Hugo Tomasi pour la conception 3D.",
       thumb: "thumb.jpg",
@@ -23,9 +24,10 @@ const TimData = [
     {
       name: "La Martinière Diderot",
       slug: "lmd",
-      domaine: "Site web",
+      domaine: "Interface expérimentale",
       date: "2021",
       projectLink: "Lien",
+      tagline: "Une platforme attractive & mouvementée.",
       description:
         "J’ai eu comme objectif de réaliser une interface permettant aux utilisateurs de modifier l’esthétique d’un site. J’ai choisi de mettre en oeuvre ce principe à l’occasion des JPO de La Martinière Diderot. J’ai donc réalisé l’identité visuelle de cet évènement ainsi qu’une interface permettant aux visiteurs de manipuler et de s’amuser avec l’identité graphique.",
       thumb: "thumb.jpg",
@@ -37,7 +39,8 @@ const TimData = [
       slug: "hugo",
       domaine: "Site web",
       date: "2019",
-      projectLink: "Lien",
+      projectLink: "https://hugotomasi.com/",
+      tagline: "Découvrir le site",
       description:
         "J'ai créé le thème wordpress d'Hugo Tomasi, un motion designer Lyonnais en freelance. L'objectif principal était de montrer que ses compétences techniques lui permettent d'entreprendre un projet de A à Z.",
       thumb: "thumb.jpg",
@@ -56,7 +59,7 @@ const TimData = [
     {
       name: "Pogote-moi",
       slug: "pogo",
-      domaine: "Expérimentation typo",
+      domaine: "Expérimentation typographique",
       date: "2021",
       projectLink: "Lien",
       description:

@@ -341,7 +341,7 @@
        -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; 
-    transition: opacity 100ms;
+    transition: opacity 300ms;
   }
 .hide .container-img-insta{
     opacity: 0;
@@ -361,7 +361,7 @@
     background-color: var(--light-color);
     border-radius: 5px;
     padding: 6px 10px 3px 10px;
-    animation: fadeOut 1000ms forwards infinite;
+    animation: fadeOut 1500ms forwards infinite;
     pointer-events: none; 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -372,7 +372,7 @@
   }
   @keyframes fadeOut{
     0%{
-        transform: scale(0.2);
+        transform: scale(0.8);
         font-variation-settings: 'wght' 250, 'wdth' 90;
     }
     20%{
@@ -388,8 +388,8 @@
   
     }
     100%{
-        transform: scale(0.7);
-        opacity: 0.5;
+        transform: scale(0.8);
+        /* opacity: 0.5; */
         font-variation-settings: 'wght' 250, 'wdth' 90;
     }
   }
@@ -440,8 +440,11 @@
   /* contact */
   /***********/
   .container-contact{
+    position: relative;
+    height: 250vh;
     max-width: 450px;
-    margin: 300px auto;
+    margin: 0 auto;
+    padding: 300px 0;
     text-align: center;
   }
   .container-contact h5{
@@ -449,6 +452,21 @@
     font-variation-settings: 'wght' 350, 'wdth' 110;
     font-size: 1.4em;
   }
+.container-img-contact{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 300px;
+}
+.container-img-contact img{
+  width: 100%;
+}
+
+
+
+
+
+
   /***********/
   /* footer */
   /***********/
@@ -486,13 +504,3 @@
 
 
 
-  /* project page */
-  .container-media-project{
-    margin: 200px 0;
-  }
-  .title-word:not(:last-child){
-    margin-right: 72px;
-  }
-  .container-img-project,  .container-img-project img ,  .container-img-project video{
-    width: 100%;
-  }

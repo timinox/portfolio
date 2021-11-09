@@ -273,7 +273,7 @@ const IntroDescription = ({ content }) => {
       </article>
       <article className="about-description">
         <h2>
-          Je suis un <strong>designer graphique</strong> &amp;{" "}
+          Je suis <strong>designer graphique</strong> &amp;{" "}
           <strong>développeur freelance</strong>,<br />
           Je crée des systèmes graphiques innovants en alliant
         </h2>

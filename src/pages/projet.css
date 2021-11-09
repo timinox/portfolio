@@ -1,4 +1,142 @@
 
+.header-project{
+	position: absolute;
+	padding: 20px;
+	display: block;
+	overflow: hidden;
+}
+.header-project h1{
+	display: inline-block;
+	font-family: "Anybody", sans-serif;
+	font-variation-settings: 'wght' 750, 'wdth' 140; 
+	letter-spacing: 1px;
+}
+  /* project page */
+.container {
+	width: 100%;
+}
+.no-scroll .container{
+	max-height: 100vh;
+	overflow: hidden;
+}
+.top-row {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 50vh;
+	width: 100%;
+}
+.details{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.top {
+	padding: 0 40px 40px 40px;
+}
+.details span{
+	font-family: "Anybody", sans-serif;
+	font-variation-settings: 'wght' 450, 'wdth' 100; 
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	padding: 4px 10px 2px 10px;
+}
+.date-projet{
+	font-family: "Anybody", sans-serif;
+	font-variation-settings: 'wght' 550, 'wdth' 110; 
+}
+.model{
+	padding-top: 15px;
+	overflow: hidden;
+}
+.model span{
+	display: inline-block;
+	position: relative;
+	font-family: "Anybody", sans-serif;
+	font-variation-settings: 'wght' 350, 'wdth' 110; 
+	font-size: 2.5em;
+}
+.title-word{
+	display: inline-block;
+}
+.title-word:not(:last-child){
+	margin-right: 32px;
+}
+
+.bottom-row {
+	height: 70vh;
+	position: relative;
+}
+.bottom {
+	height: 100%;
+	width: 100%;
+}
+.thumbnail-single {
+	width: 100%;
+	height: 800px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	right: 0;	
+}
+.frame-single img {
+	  position: absolute;
+	  width: 100%;
+}
+.scroll-for-more {
+	position: absolute;
+	top: 50px;
+	left: 100px;
+	z-index: 20;
+}
+.icon svg{
+	height: auto;
+	width: 28px;
+	
+}
+.icon path{
+	stroke: #C4C4C4;
+}
+.text {
+	margin-top: 3px;
+	color: #C4C4C4;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+/* section content */
+
+.detailed-information{
+	padding: 200px 40px 0 40px;
+	margin: 0 auto;
+	max-width: 1000px;
+}
+.detailed-information .row{
+	position: relative;
+	z-index: 1;
+	display: flex;
+	justify-content: space-between;
+}
+.detailed-information .row a{
+	margin-right: 10px;
+	min-width: 300px;
+}
+.detailed-information p {
+	font-size: 1.2em;
+}
+.container-media-project{
+	margin: 200px 0;
+}
+.container-img-project{
+	padding: 10px 0;
+}
+.container-img-project,  .container-img-project img ,  .container-img-project video{
+	width: 100%;
+}
+
+
+
 /* switch project */
 .switch-project{
 	display: flex;
