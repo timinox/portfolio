@@ -1,4 +1,4 @@
-
+/*
 $main: #f0d8bb;
 $white: #ffffff;
 $black: #1e1f13;
@@ -46,7 +46,7 @@ $black: #1e1f13;
   }
 }
 
-//Header
+
 
 .container {
   flex-grow: 1;
@@ -61,15 +61,6 @@ $black: #1e1f13;
     max-width: 100%;
     padding: 0;
   }
-  /* @media (min-width: 1024px) {
-    max-width: 960px;
-  }
-  @media (min-width: 1216px) {
-    max-width: 1152px;
-  }
-  @media (min-width: 1408px) {
-    max-width: 1560px;
-  } */
 
   .row {
     display: flex;
@@ -118,7 +109,8 @@ main {
   }
 }
 
-//single
+
+
 .single {   
   .details {
     display: flex;
@@ -211,3 +203,4 @@ main {
     }
   }
 }
+*/
