@@ -253,8 +253,19 @@ li{
 .grain-effect{
   animation: grain2 1s steps(1) infinite;
   mix-blend-mode: multiply;
-  opacity: 0.25;
+  opacity: 0.3;
   /* background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/paper-pattern.png"); */
+}
+.grain-effect::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(var(--angleGradient), #4218d899, #ffffff);
+  filter: contrast(300%) brightness(200%);
+  mix-blend-mode: multiply;
 
 }
 @keyframes grain{ 

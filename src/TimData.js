@@ -13,6 +13,7 @@ const TimData = [
       slug: "elec",
       domaine: "Teaser de festival",
       date: "2020",
+      projectLinkBtn: "Voir la vidéo",
       projectLink: "Lien",
       tagline: "Un teaser vidéo dynamique et immersif.",
       description:
@@ -26,6 +27,7 @@ const TimData = [
       slug: "lmd",
       domaine: "Interface expérimentale",
       date: "2021",
+      projectLinkBtn: "Voir le site",
       projectLink: "Lien",
       tagline: "Une platforme attractive & mouvementée.",
       description:

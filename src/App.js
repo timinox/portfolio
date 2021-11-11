@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 //utils
 import { mapRange } from "./utils.js";
@@ -8,13 +13,10 @@ import { mapRange } from "./utils.js";
 //Pages
 import Home from "./pages/home";
 import Projet from "./pages/projet";
+import PageNotFound from "./pages/PageNotFound";
 
 //data
 import TimData from "./TimData.js";
-
-//Styles
-// import "./App.scss";
-import "./App.css";
 
 function App() {
   const [data, setData] = useState();
@@ -90,12 +92,15 @@ function App() {
                     )}
                   />
                   <Route
-                    exact
+                    exact={true}
                     path="/projet/:slug"
                     render={() => (
                       <Projet data={data} toggleTheme={toggleTheme} />
                     )}
                   />
+                  <Route>
+                    <PageNotFound toggleTheme={toggleTheme} />
+                  </Route>
                 </Switch>
               </AnimatePresence>
             )}

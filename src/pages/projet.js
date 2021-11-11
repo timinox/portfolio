@@ -181,7 +181,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                   animate={{
                     y: 0,
                     width: "100%",
-                    height: window.innerWidth > 1440 ? 1000 : 800,
+                    height: window.innerWidth > 1240 ? 1000 : 500,
                     transition: { delay: 0.2, ...transition },
                   }}
                   className="thumbnail-single"
@@ -216,15 +216,20 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
         >
           <div className="container">
             <div className="row">
-              <a
-                href={currentPage.projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <div className="container-tagline">
                 {currentPage.tagline && (
                   <h2 className="title">{currentPage.tagline}</h2>
                 )}
-              </a>
+                {currentPage.projectLink && (
+                  <a
+                    href={currentPage.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {currentPage.projectLinkBtn}
+                  </a>
+                )}
+              </div>
               <p>{currentPage.description}</p>
             </div>
             <div className="container-media-project">

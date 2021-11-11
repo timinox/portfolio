@@ -5,12 +5,11 @@ const Footer = () => {
   return (
     <footer>
       <p>
-        Un site crée de zéro avec <strong>Html | CSS | Vanilla JS</strong>
+        Un site crée from scratch avec <strong>Html | CSS | React</strong>
       </p>
       <p>
         par <strong>Timothé Joubert</strong>
       </p>
-      <p>test deployement</p>
     </footer>
   );
 };

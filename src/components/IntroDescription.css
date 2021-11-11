@@ -1,0 +1,82 @@
+  /***********/
+  /* description */
+  /***********/
+  .container-about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 400px 0;
+  }
+  .container-reseaux{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-about h1, .title-projet h3 {
+    font-family: "Anybody";
+    font-size: 1em;
+    font-variation-settings: 'wght' 600, 'wdth' 110;    
+    text-transform: uppercase;
+    opacity: 0.3;
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+  .reseaux{
+    margin-top: 18px;
+  }
+  .reseaux svg{
+    margin: 0 10px;
+    opacity: 0.3;
+    transition: opacity 200ms;
+  }
+  .reseaux svg:hover{
+    opacity: 0.5;
+  }
+  .icon-path-reseau{
+    fill: var(--light-color);
+  }
+  .about-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    text-align: center;
+    opacity: 0.8;
+    line-height: 3em;
+  }
+  .about-description > h2{
+    font-size: 2.3em;
+    margin: 0 20px;
+    font-variation-settings: 'wght' 250, 'wdth' 90; 
+  }
+  .about-description > h2 strong{
+    font-family: "Anybody", "Monument", sans-serif;
+    font-variation-settings: 'wght' 550, 'wdth' 80; 
+
+  }
+  .about-description bold{
+    font-variation-settings: 'wght' 450;
+  }
+
+  .about-support{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: var(--light-color-2);
+    /* width: 100%; */
+  }
+  .about-support h2{
+    font-size: 2em; 
+    color: var(--light-color);
+    padding: 10px 40px 7px 40px;
+    font-variation-settings: 'wght' 450, 'wdth' 90;  
+    /* text-transform: uppercase; */
+    border-radius: 2px;
+    cursor: default;
+    line-height: 2rem;
+  }
+  

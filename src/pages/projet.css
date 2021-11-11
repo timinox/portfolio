@@ -32,7 +32,7 @@
 	align-items: center;
 }
 .top {
-	padding: 0 40px 40px 40px;
+	padding: 0 20px 40px 20px;
 }
 .details span{
 	font-family: "Anybody", sans-serif;
@@ -44,6 +44,9 @@
 .date-projet{
 	font-family: "Anybody", sans-serif;
 	font-variation-settings: 'wght' 550, 'wdth' 110; 
+}
+.location{
+	margin-right: 15px;
 }
 .model{
 	padding-top: 15px;
@@ -118,9 +121,36 @@
 	display: flex;
 	justify-content: space-between;
 }
-.detailed-information .row a{
+.container-tagline{
 	margin-right: 10px;
 	min-width: 300px;
+}
+
+.detailed-information .row a{
+	font-family: "Anybody", "Monument", sans-serif;
+	font-variation-settings: "wght" 550, "wdth" 120;
+	display: inline-block;
+	position: relative;
+	text-transform: uppercase;
+	margin-top: 15px;
+}
+  
+.detailed-information .row a:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: -2px;
+	left: 0;
+	background-color: var(--light-color-8);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+  
+.detailed-information .row a:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
 }
 .detailed-information p {
 	font-size: 1.2em;
@@ -140,7 +170,7 @@
 /* switch project */
 .switch-project{
 	display: flex;
-	margin: 0 auto 200px auto;
+	margin: 0 auto;
 }
 .switch-project a{
 	width: 50%;
@@ -183,4 +213,59 @@
     100%{
         font-variation-settings: 'wght' 900, 'wdth' 140; 
     }
+}
+
+@media (max-width: 900px) { 
+	div.model span{
+		font-size: 2.2em;
+	}
+}
+@media (max-width: 800px) { 
+	.title-word:not(:last-child){
+		margin-right: 20px;
+	}
+	div.model span{
+		font-size: 2em;
+	}
+	div.scroll-for-more{
+		left: 50px;
+	}
+	.scroll-for-more .text{
+		display: none;
+	}
+	div.detailed-information .row{
+		flex-direction: column;
+	}
+	.container-tagline{
+		margin-bottom: 20px;
+	}
+	.container-tagline a{
+		margin-top: 20px;
+	}
+}
+
+@media (max-width: 600px) { 
+	.title-word:not(:last-child){
+		margin-right: 14px;
+	}
+	div.model span{
+		font-size: 1.8em;
+	}
+	div.scroll-for-more{
+		left: 20px;
+	}
+	div.icon svg{
+		width: 20px;
+	}
+	div.top-row{
+		justify-content: flex-start;
+	}
+	.switch-project h3{
+		font-size: 1.4em;
+	}
+}
+@media (max-width: 500px) { 
+	div.model span{
+		font-size: 1.4em;
+	}
 }

@@ -29,7 +29,7 @@ function RepeatDiv({ posX, posY, index }) {
 let i = 1;
 let cDiv, newDiv;
 function Insta() {
-  const [mousePos, setmousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setmousePos] = useState({ x: null, y: null });
   const [customDiv, setCustomDiv] = useState([]);
   const [stopMove, setStopMove] = useState(true);
   const containerInsta = useRef(null);
@@ -100,7 +100,7 @@ function Insta() {
                 posX={cdiv.posX}
                 posY={cdiv.posY}
                 index={cdiv.copyNumber}
-                key={cdiv.copyNumber}
+                key={i}
               />
             );
           })}

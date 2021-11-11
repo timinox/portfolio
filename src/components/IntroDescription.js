@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { mapRange, myDist } from "../utils";
 
 import "./IntroDescription.css";
 
 const IntroDescription = ({ content }) => {
+  let [windowW, setWindowW] = useState();
   let maxDist;
   let mouse = { x: 0, y: 0 };
   let cursor = {
@@ -60,7 +61,6 @@ const IntroDescription = ({ content }) => {
       if (el === "bg-tim") {
         var style = "";
         style += "opacity: " + this.alpha + ";";
-        // style += "justify-self: " + this.stretch() ? "stretch" : "center" + ";";
         style +=
           "font-variation-settings: 'wght' " +
           this.wght +
@@ -178,10 +178,12 @@ const IntroDescription = ({ content }) => {
   };
 
   useEffect(() => {
+    setWindowW(window.innerWidth);
+
     new VFont("domaines-idtt");
     new VFont("domaines-web");
     new VFont("domaines-motion");
-  }, []);
+  });
 
   return (
     <section className="container-about">
@@ -272,11 +274,26 @@ const IntroDescription = ({ content }) => {
         </div>
       </article>
       <article className="about-description">
-        <h2>
-          Je suis <strong>designer graphique</strong> &amp;{" "}
-          <strong>développeur freelance</strong>,<br />
-          Je crée des systèmes graphiques innovants en alliant
-        </h2>
+        {(() => {
+          if (windowW < 600) {
+            return (
+              <h2>
+                Je suis <strong>designer graphique</strong> &amp;{" "}
+                <strong>développeur freelance</strong>, Je crée des systèmes
+                graphiques innovants en alliant
+              </h2>
+            );
+          } else {
+            return (
+              <h2>
+                Je suis <strong>designer graphique</strong> &amp;{" "}
+                <strong>développeur freelance</strong>, <br />
+                Je crée des systèmes graphiques innovants en alliant
+              </h2>
+            );
+          }
+        })()}
+
         <div className="about-support">
           <h2 id="domaines-idtt">
             Identité <br /> de marque

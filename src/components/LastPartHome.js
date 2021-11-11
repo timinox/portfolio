@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./LastPartHome.css";
 
 import { mapRange, clamp } from "../utils";
 import Insta from "./Insta";
 
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { useViewportScroll } from "framer-motion";
 
 function About({ data }) {
   return (
@@ -117,7 +117,7 @@ function About({ data }) {
           >
             <div className="box-cv">
               <p>Publication</p>
-              <p>Etape</p>
+              <p>Étape</p>
               <p>2021</p>
             </div>
           </a>
@@ -139,10 +139,13 @@ function About({ data }) {
 }
 let startContainer;
 let stopContainer;
+let containerImgHeight;
 function Contact({ data }) {
   const { scrollYProgress } = useViewportScroll();
   const containerContact = useRef(null);
-  const imgLength = 15;
+  const containerImg = useRef(null);
+  const imgLength = 60;
+
   // const [startContainer, setStartContainer] = useState(0);
   // const [stopContainer, setStopContainer] = useState(0);
 
@@ -168,20 +171,58 @@ function Contact({ data }) {
       )
     ),
     0,
-    imgLength
+    imgLength - 1
   );
-  console.log(value);
+
+  // let translateY = Math.floor(
+  //   mapRange(
+  //     scrollYProgress.current,
+  //     startContainer / document.body.scrollHeight,
+  //     stopContainer / document.body.scrollHeight,
+  //     -50,
+  //     0
+  //   )
+  // );
+
   useEffect(() => {
     initContainerSize();
     // console.log(value, startContainer, stopContainer);
   });
 
+  const getIndexImg = (num) => {
+    if (num < 10) {
+      return "000" + num;
+    } else {
+      return "00" + num;
+    }
+  };
+
   return (
     <section className="container-contact" ref={containerContact}>
-      <h5>N'hésitez pas à me contacter</h5>
-      <div className="container-img-contact">
+      <div
+        className="texte-contact"
+        style={{
+          height: `calc(100% - ${window.innerHeight / 2}px + 85px)`,
+        }}
+      >
+        <h5 style={{ "--data-y": "0" }}>N'hésitez pas à me contacter</h5>
+        <h4 style={{ "--data-y": "3" }}>Pour tout projets</h4>
+        <h4 style={{ "--data-y": "4" }}>Pour toute question</h4>
+        <h4 style={{ "--data-y": "6" }}>Timothejoubert26@gmail.com</h4>
+      </div>
+      <div
+        className="container-img-contact"
+        // style={{
+        //   transform: `translateY(${translateY}%)`,
+        // }}
+      >
         <img
-          src={window.location.origin + `/sprite-at/_At_Sign-${value}.png`}
+          // src={window.location.origin + `/sprite-at/_At_Sign-${value}.png`}
+
+          src={
+            window.location.origin +
+            `/sprite-main/resize/${getIndexImg(value + 1)}.png`
+          }
           alt="alt text"
         />
       </div>
