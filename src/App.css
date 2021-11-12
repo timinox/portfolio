@@ -1,0 +1,32 @@
+.container-loader{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+}
+.container-loader .loader-txt {
+	font-size: 3em;
+	margin-right: 20px;
+}
+.loader-spinner{
+	display: block;
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: conic-gradient(var(--light-color), var(--bg-color));
+	animation: loader-spinner 4s cubic-bezier(0.795, 0.335, 0.175, 0.735) infinite ;
+	transform: rotate(90deg);
+}
+@keyframes loader-spinner {
+	0%{
+		transform: rotate(90deg);
+	}
+	50%{
+		transform: rotate(450deg);
+	}
+	100%{
+		transform: rotate(810deg);
+	}
+}

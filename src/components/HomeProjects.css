@@ -68,26 +68,25 @@
   /* .project:hover h5{
     background-color: var(--light-color);
   } */
-  .project:hover h5 span{
+  /* .project:hover h5 span{
     transform: translateY(-0px);
   }
   .project:hover h5 span.space-letter{
     transform: translateY(-0px);
-  }
+  } */
   .project-info h5 span{
     position: relative;
-    display: block;
+    display: inline-block;
     font-family: "roboto", sans-serif;
     text-rendering: optimizeSpeed;
-    font-variation-settings: 'wght' 650;
+    /* font-variation-settings: 'wght' 650; */
     letter-spacing: 1px;
     font-size: 1.2em;
-    /* letter-spacing: -1px; */
     background-color: var(--light-color);
     color: var(--bg-color);
     padding: 3px 0px;
-    transform: translateY(-40px);
-    transition: transform 90ms calc(10ms * var(--data-letter)) ;
+    /* transform: translateY(-40px);
+    transition: transform 90ms calc(10ms * var(--data-letter)) ; */
   }
   .project-info h5 span:first-child{
     padding-left: 7px;
@@ -95,12 +94,12 @@
   .project-info h5 span:last-child{
     padding-right: 7px;
   }
-  .project .hideSpan{
+  /* .project .hideSpan{
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     position: absolute;
-  }
+  } */
   .project-img{
     display: flex;
     justify-content: center;

@@ -137,9 +137,10 @@ function About({ data }) {
     </section>
   );
 }
+
 let startContainer;
 let stopContainer;
-let containerImgHeight;
+
 function Contact({ data }) {
   const { scrollYProgress } = useViewportScroll();
   const containerContact = useRef(null);
@@ -174,19 +175,8 @@ function Contact({ data }) {
     imgLength - 1
   );
 
-  // let translateY = Math.floor(
-  //   mapRange(
-  //     scrollYProgress.current,
-  //     startContainer / document.body.scrollHeight,
-  //     stopContainer / document.body.scrollHeight,
-  //     -50,
-  //     0
-  //   )
-  // );
-
   useEffect(() => {
     initContainerSize();
-    // console.log(value, startContainer, stopContainer);
   });
 
   const getIndexImg = (num) => {
@@ -210,18 +200,11 @@ function Contact({ data }) {
         <h4 style={{ "--data-y": "4" }}>Pour toute question</h4>
         <h4 style={{ "--data-y": "6" }}>Timothejoubert26@gmail.com</h4>
       </div>
-      <div
-        className="container-img-contact"
-        // style={{
-        //   transform: `translateY(${translateY}%)`,
-        // }}
-      >
+      <div className="container-img-contact">
         <img
-          // src={window.location.origin + `/sprite-at/_At_Sign-${value}.png`}
-
           src={
             window.location.origin +
-            `/sprite-main/resize/${getIndexImg(value + 1)}.png`
+            `/sprite-main/${getIndexImg(value + 1)}.png`
           }
           alt="alt text"
         />

@@ -145,7 +145,8 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
         className="single"
         initial="initial"
         animate="animate"
-        exit="exit"
+        transition={{ duration: 1 }}
+        exit={{ y: window.innerHeight }}
       >
         <div className="container fluid">
           <div className="row center top-row">

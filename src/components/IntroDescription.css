@@ -61,6 +61,7 @@
   }
 
   .about-support{
+    position: relative;
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
@@ -79,4 +80,74 @@
     cursor: default;
     line-height: 2rem;
   }
+  .about-support:hover .svg-help p, .about-support:hover .svg-help path{
+    /* visibility: hidden; */
+    animation-play-state: paused;
+  }
+  .svg-help{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    transform: translate(-180%, 60%);
+    opacity: 0.4;
+  }
+  .svg-help > p{
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(112%, -28%);
+    animation: txt-help 4s ease-in-out infinite;
+    color: var(--light-color);
+
+  }
+  .svg-help svg{
+    width: 100%;
+    transform: rotate(170deg);
+  }
+  .svg-help .line-help {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    stroke: var(--light-color);
+    animation: dash 4s ease-in-out infinite;
+  }
+  .svg-help .arrow-help {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    stroke: var(--light-color);
+    animation: arrow-help 4s ease-in-out infinite;
+  }
   
+  @keyframes dash {
+    0%, 100%{
+      opacity: 0;
+      stroke-dashoffset: 400;
+    }
+    20%, 25% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+
+    50%{
+      stroke-dashoffset: -400;
+      opacity: 0;
+    }
+  }
+  @keyframes arrow-help {
+    15%, 50%{
+      opacity: 0;
+      stroke-dashoffset: 400;
+    }
+    20%, 40% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+  @keyframes txt-help {
+    0%, 15%, 50%, 100%{
+      opacity: 0;
+    }
+    20%, 40% {
+      opacity: 1;
+    }
+  }

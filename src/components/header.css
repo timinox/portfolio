@@ -20,10 +20,12 @@
     font-size: 13em;
     text-transform: uppercase;
     line-height: 200px;
-    -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--light-color);
-  /* color: var(--bg-color); */
-  color: transparent;
+    /* -webkit-text-stroke-width: 2px; */
+    /* -webkit-text-stroke-color: var(--light-color); */
+    /* text-shadow: 1px 0 0 var(--light-color), 0 1px 0 var(--light-color), -1px 0 0 var(--light-color), 0 -1px 0 var(--light-color); */
+    /* color: var(--bg-color); */
+    color: transparent;
+    /* color: rgb(255, 255, 255); */
     z-index: 10 ;
   }
   #bg-tim {

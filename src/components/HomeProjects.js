@@ -6,12 +6,24 @@ import ProgressiveImage from "react-progressive-image";
 import "./HomeProjects.css";
 
 const customEase = [0.43, 0.13, 0.23, 0.96];
-const transitionPage = { duration: 0.6, ease: customEase };
+const transitionPage = {
+  duration: 0.6,
+  ease: customEase,
+  delayChildren: 1.2,
+  staggerChildren: 0.25,
+};
 let direction;
 
+const textMotion = {
+  rest: {
+    y: 40,
+  },
+  hover: {
+    y: 0,
+  },
+};
+
 function ImagesProjects({ slug, imgUrl, index }) {
-  // if (window.location.pathname === `/projet/${slug}`) {
-  // }
   {
     if (imgUrl.includes(".mp4")) {
       return (
@@ -65,7 +77,7 @@ const ParseLetter = ({ word }) => {
       {word.split("").map((span, index) => {
         if (span === " ") {
           return (
-            <span
+            <motion.span
               key={index}
               className="space-letter"
               style={{
@@ -73,15 +85,20 @@ const ParseLetter = ({ word }) => {
                 height: 25,
                 width: 7,
               }}
+              variants={textMotion}
             >
               {span}
-            </span>
+            </motion.span>
           );
         } else {
           return (
-            <span key={index} style={{ "--data-letter": index }}>
+            <motion.span
+              key={index}
+              style={{ "--data-letter": index }}
+              variants={textMotion}
+            >
               {span}
-            </span>
+            </motion.span>
           );
         }
       })}
@@ -92,11 +109,6 @@ const ParseLetter = ({ word }) => {
 function ContentMarquee({ projet, index, image, containerInfo }) {
   const { scrollYProgress } = useViewportScroll();
   const [translateY, setTranslateY] = useState(0);
-  // console.log(
-  //   containerInfo.top / document.body.offsetHeight,
-  //   containerInfo.end / document.body.offsetHeight
-  // );
-
   if (index % 2) {
     direction = window.innerWidth; // window.innerWidth;
   } else {
@@ -120,8 +132,11 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
     <motion.article
       className="project"
       key={index}
-      exit={{ x: -direction * 1.8, opacity: 0 }}
       transition={transitionPage}
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+      exit={{ x: -direction * 2, opacity: 0 }}
     >
       <Link to={`/projet/${projet.slug}`}>
         <motion.div className="project-info">
@@ -129,7 +144,7 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
             <ParseLetter word={projet.name} />
           </h3>
           <h5>
-            <ParseLetter word={projet.domaine} />
+            <ParseLetter word={projet.domaine} variants={textMotion} />
           </h5>
         </motion.div>
 

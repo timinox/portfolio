@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 import BtnSwitchColor from "../components/BtnSwitchColor";
 import "./PageNotFound.css";
 
+const customEase = [0.43, 0.13, 0.23, 0.96];
+const transitionPage = {
+  duration: 0.5,
+  ease: customEase,
+};
+
 const PageNotFound = ({ toggleTheme }) => {
   return (
     <>
@@ -20,9 +26,14 @@ const PageNotFound = ({ toggleTheme }) => {
         </motion.h1>
       </Link>
       <BtnSwitchColor toggleTheme={toggleTheme} />
-      <div className="container-not-found">
+      <motion.div
+        className="container-not-found"
+        transition={transitionPage}
+        initial={{ y: 0, opacity: 1 }}
+        exit={{ y: -window.innerHeight, opacity: 0 }}
+      >
         <h3>404</h3>
-      </div>
+      </motion.div>
     </>
   );
 };

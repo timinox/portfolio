@@ -7,10 +7,22 @@ import HomeProjects from "../components/HomeProjects";
 import LastPartHome from "../components/LastPartHome";
 import Footer from "../components/Footer";
 
-const Home = ({ imageDetails, image, data, toggleTheme }) => {
+const Home = ({
+  imageDetails,
+  image,
+  data,
+  toggleTheme,
+  darkTheme,
+  pageDelay,
+}) => {
   return (
     <>
-      <Header data={data} toggleTheme={toggleTheme} />
+      <Header
+        data={data}
+        toggleTheme={toggleTheme}
+        darkTheme={darkTheme}
+        pageDelay={pageDelay}
+      />
       <main id="ancre-description">
         <IntroDescription content={data[0]} />
         <HomeProjects

@@ -6,7 +6,7 @@ import BtnSwitchColor from "./BtnSwitchColor";
 
 import "./header.css";
 
-const Header = ({ toggleTheme, data }) => {
+const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
   const [run, setRun] = useState(null);
   var maxDist;
   var mouse = { x: 0, y: 0 };
@@ -199,15 +199,37 @@ const Header = ({ toggleTheme, data }) => {
         id="bg-tim"
         initial={{ scale: 0, opacity: 0 }}
         animate={{
-          transition: { duration: 0.5 },
+          transition: { duration: 0.5, delay: pageDelay + 0.3 },
           scale: 1,
           opacity: 1,
         }}
-        transition={{ duration: 2 }}
       ></motion.div>
       <div className="container-header">
-        <h1>Tim</h1>
-        <h2>Designer & front-end developper</h2>
+        <motion.h1
+          initial={{
+            color: !darkTheme ? "#C4C4C4" : "#1B2229",
+            textShadow:
+              "0 0 0 var(--light-color), 0 0 0 var(--light-color), 0 0 0 var(--light-color), 0 0 0 var(--light-color)",
+          }}
+          animate={{
+            transition: { duration: 0.5, delay: pageDelay },
+            color: !darkTheme ? "#1B2229" : "#C4C4C4",
+            textShadow:
+              "1px 0 0 var(--light-color), 0 1px 0 var(--light-color), -1px 0 0 var(--light-color), 0 -1px 0 var(--light-color)",
+          }}
+        >
+          Tim
+        </motion.h1>
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          animate={{
+            transition: { duration: 0.5, delay: pageDelay + 0.3 },
+            y: 0,
+            opacity: 1,
+          }}
+        >
+          Designer & front-end developper
+        </motion.h2>
       </div>
 
       <a
