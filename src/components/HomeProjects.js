@@ -85,18 +85,13 @@ const ParseLetter = ({ word }) => {
                 height: 25,
                 width: 7,
               }}
-              variants={textMotion}
             >
               {span}
             </motion.span>
           );
         } else {
           return (
-            <motion.span
-              key={index}
-              style={{ "--data-letter": index }}
-              variants={textMotion}
-            >
+            <motion.span key={index} style={{ "--data-letter": index }}>
               {span}
             </motion.span>
           );
@@ -133,9 +128,9 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
       className="project"
       key={index}
       transition={transitionPage}
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
+      // initial="rest"
+      // whileHover="hover"
+      // animate="rest"
       exit={{ x: -direction * 2, opacity: 0 }}
     >
       <Link to={`/projet/${projet.slug}`}>

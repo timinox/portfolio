@@ -28,6 +28,7 @@ function RepeatDiv({ posX, posY, index }) {
 }
 let i = 1;
 let cDiv, newDiv;
+let time = 0;
 function Insta() {
   const [mousePos, setmousePos] = useState({ x: null, y: null });
   const [customDiv, setCustomDiv] = useState([]);
@@ -63,18 +64,21 @@ function Insta() {
   };
 
   function mouseStopped() {
-    setStopMove(true);
-    help.current.classList.add("help-on");
-    containerInsta.current.classList.add("hide");
+    if (stopMove) {
+      help.current.classList.add("help-on");
+      containerInsta.current.classList.add("hide");
+    } else {
+      setStopMove(true);
+    }
   }
 
   function removeImg() {
     setTimeout(() => {
-      if (cDiv && cDiv.length > 0) {
+      if (cDiv && cDiv.length > 1) {
         cDiv.splice(0, 1);
         setCustomDiv(cDiv);
       }
-    }, 400);
+    }, 500);
   }
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import BtnSwitchColor from "../components/BtnSwitchColor";
 import "./PageNotFound.css";
@@ -12,6 +12,17 @@ const transitionPage = {
 };
 
 const PageNotFound = ({ toggleTheme }) => {
+  let location = useLocation().pathname;
+
+  const pathLocation = () => {
+    if (location.includes("projet")) {
+      return;
+    } else {
+      return "Pas de page existant";
+    }
+  };
+
+  console.log();
   return (
     <>
       <Link to={`/`} className="header-project">
@@ -33,6 +44,15 @@ const PageNotFound = ({ toggleTheme }) => {
         exit={{ y: -window.innerHeight, opacity: 0 }}
       >
         <h3>404</h3>
+        {location.includes("projet") ? (
+          <>
+            <p>Pas de projet existant</p>
+          </>
+        ) : (
+          <>
+            <p>Pas de page existante</p>
+          </>
+        )}
       </motion.div>
     </>
   );

@@ -7,7 +7,7 @@ const BtnSwitchColor = ({ toggleTheme }) => {
     <motion.div
       className="dark-mode-container"
       onClick={toggleTheme}
-      initial={{ y: -60 }}
+      initial={{ y: 0.5 }}
       animate={{
         transition: { duration: 0.5, delay: 0.5 },
         y: 0,

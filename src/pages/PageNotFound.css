@@ -1,10 +1,17 @@
 .container-not-found{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100vw;
 	height: 100vh;
 }
 .container-not-found h3{
+	font-family: "Darker-Grotesque", "Poppins", "Anybody", sans-serif;
 	font-size: 8em;
+	line-height: 1.2em;
+}
+.container-not-found p{
+	font-family: "Darker-Grotesque", "Poppins", "Anybody", sans-serif;
+	font-size: 1.2em;
 }

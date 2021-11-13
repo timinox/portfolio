@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 //utils
 import { mapRange } from "./utils.js";
@@ -149,18 +154,16 @@ function App() {
                       />
                     )}
                   />
+
                   <Route
                     exact={true}
                     path="/projet/:slug"
                     render={() => (
                       <Projet data={data} toggleTheme={toggleTheme} />
                     )}
-                  >
-                    <Route>
-                      <PageNotFound toggleTheme={toggleTheme} />
-                    </Route>
-                  </Route>
-                  <Route>
+                  ></Route>
+
+                  <Route path="*">
                     <PageNotFound toggleTheme={toggleTheme} />
                   </Route>
                 </Switch>

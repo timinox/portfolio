@@ -53,7 +53,7 @@
     background-color: var(--light-color);
     border-radius: 5px;
     padding: 6px 10px 3px 10px;
-    animation: fadeOut 1500ms forwards infinite;
+    animation: fadeOut 1500ms infinite;
     pointer-events: none; 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -77,7 +77,6 @@
     80%{
         opacity: 1;
         transform: scale(1);
-  
     }
     100%{
         transform: scale(0.8);

@@ -1,26 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;600;800&display=swap");
-
-body {
-  margin: 0;
-  font-family: "Darker Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 /*************************/
 /* stylesheet de timothé */
 /*************************/
 /*********/
 /* FONTS */
 /*********/
-
+*{
+  font-family: "Darker-Grotesque", "Poppins", serif;
+}
 /* poppins */
 @font-face {
   font-family: "Poppins";
@@ -148,7 +134,11 @@ src: url('/fonts/clash.woff2') format("woff2");
   font-family:'Clash-grotesk';
 src: url('/fonts/clash-grotesk.woff2') format("woff2");
 }
-
+@font-face {
+  font-family: "Darker-Grotesque";
+  font-weight: 800;
+  src: url('/fonts/darker-grotesk-bold.woff2') format('woff2');
+}
 
 /*************/
 /* VARIABLES */

@@ -63,14 +63,15 @@
     margin-top: 10px;
     overflow: hidden;
     background-color: transparent;
-    transition: background-color 10ms calc(20ms * var(--data-letter)) ;
+    /* transition: background-color 10ms calc(20ms * var(--data-letter)); */
   }
   /* .project:hover h5{
     background-color: var(--light-color);
   } */
-  /* .project:hover h5 span{
-    transform: translateY(-0px);
+   .project:hover h5 span{
+      animation: domaineTitle 100ms calc(15ms * var(--data-letter)) forwards!important;
   }
+  /*
   .project:hover h5 span.space-letter{
     transform: translateY(-0px);
   } */
@@ -85,8 +86,16 @@
     background-color: var(--light-color);
     color: var(--bg-color);
     padding: 3px 0px;
-    /* transform: translateY(-40px);
-    transition: transform 90ms calc(10ms * var(--data-letter)) ; */
+    top: -40px;
+  }
+  @keyframes domaineTitle{
+    0%{
+      top: -40px;
+    }
+
+    100%{
+      top: 0px;
+    }
   }
   .project-info h5 span:first-child{
     padding-left: 7px;
