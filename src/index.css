@@ -10,29 +10,29 @@
 /* poppins */
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Black.otf") format("otf");
+  src: url("/fonts/Poppins-Black.otf") format("opentype");
   font-weight: 800;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-BlackItalic.otf") format("otf");
+  src: url("/fonts/Poppins-BlackItalic.otf") format("opentype");
   font-weight: 800;
   font-style: italic;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Bold.otf") format("otf");
+  src: url("/fonts/Poppins-Bold.otf") format("opentype");
   font-weight: 600;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-BoldItalic.otf") format("otf");
+  src: url("/fonts/Poppins-BoldItalic.otf") format("opentype");
   font-weight: 600;
   font-style: italic;
 }   
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Medium.otf") format("otf");
+  src: url("/fonts/Poppins-Medium.otf") format("opentype");
   font-weight: 500;
 }
 @font-face {
@@ -43,34 +43,34 @@
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Regular.otf") format("otf");
+  src: url("/fonts/Poppins-Regular.otf") format("opentype");
   font-weight: 400;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Italic.otf") format("otf");
+  src: url("/fonts/Poppins-Italic.otf") format("opentype");
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Light.otf") format("otf");
+  src: url("/fonts/Poppins-Light.otf") format("opentype");
   font-weight: 300;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-LightItalic.otf") format("otf");
+  src: url("/fonts/Poppins-LightItalic.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Thin.otf") format("otf");
+  src: url("/fonts/Poppins-Thin.otf") format("opentype");
   font-weight: 200;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-ThinItalic.otf") format("otf");
+  src: url("/fonts/Poppins-ThinItalic.otf") format("opentype");
   font-weight: 200;
   font-style: italic;
 }

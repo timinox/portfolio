@@ -144,7 +144,7 @@ let stopContainer;
 function Contact({ data }) {
   const { scrollYProgress } = useViewportScroll();
   const containerContact = useRef(null);
-  const containerImg = useRef(null);
+  // const containerImg = useRef(null);
   const imgLength = 60;
 
   // const [startContainer, setStartContainer] = useState(0);
@@ -203,8 +203,7 @@ function Contact({ data }) {
       <div className="container-img-contact">
         <img
           src={
-            window.location.origin +
-            `/sprite-main/${getIndexImg(value + 1)}.png`
+            window.location.origin + `sprite-main/${getIndexImg(value + 1)}.png`
           }
           alt="alt text"
         />

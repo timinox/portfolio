@@ -13,16 +13,6 @@ const transitionPage = {
 
 const PageNotFound = ({ toggleTheme }) => {
   let location = useLocation().pathname;
-
-  const pathLocation = () => {
-    if (location.includes("projet")) {
-      return;
-    } else {
-      return "Pas de page existant";
-    }
-  };
-
-  console.log();
   return (
     <>
       <Link to={`/`} className="header-project">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { mapRange, myDist } from "../utils";
 
@@ -7,7 +7,6 @@ import BtnSwitchColor from "./BtnSwitchColor";
 import "./header.css";
 
 const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
-  const [run, setRun] = useState(null);
   var maxDist;
   var mouse = { x: 0, y: 0 };
   var cursor = {
@@ -182,8 +181,6 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
     this.animate();
     return this;
   };
-
-  useEffect(() => {}, [run]);
 
   useEffect(() => {
     let url = window.location.href.split("/");

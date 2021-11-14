@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //utils
 import { mapRange } from "./utils.js";
@@ -20,14 +15,34 @@ import "./App.css";
 //data
 import TimData from "./TimData.js";
 
+//global var
 let preloaded = 0;
-let images = [];
+let nodeImgs = [];
+const getIndexImg = (num) => {
+  if (num < 10) {
+    return "000" + num;
+  } else {
+    return "00" + num;
+  }
+};
+function preLoaderImg() {
+  for (let i = 1; i < 61; i++) {
+      let url = window.location.origin + "/sprite-main/" + getIndexImg(i) + ".png";
+      var tempImage = new Image();
+      tempImage.src = url.toString();
+      nodeImgs.push(tempImage);
+    }
+}
+preLoaderImg();
+let changeImg = false;
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const [webFontsLoaded, setWebFontsLoaded] = useState(false);
+  const [data, setData] = useState([]);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  const [data, setData] = useState();
+  const [isLoading, setIsloading] = useState(true);
+
   const [darkTheme, setDarkTheme] = useState();
   const [colorTheme, setcolorTheme] = useState();
   const [gradientDegrees, setgradientDegrees] = useState(135);
@@ -44,7 +59,16 @@ function App() {
       window.localStorage.setItem("website_theme", "dark");
     }
   };
-
+  const getColorTheme = () => {
+    const colorTheme = window.localStorage.getItem("website_theme");
+    if (colorTheme) {
+      setcolorTheme(colorTheme);
+    } else {
+      window.localStorage.setItem("website_theme", "dark");
+      setDarkTheme(true);
+    }
+    console.log("color theme loaded", window.localStorage.getItem("website_theme"));
+  }
   window.onscroll = () => {
     let prc = Math.floor(
       (window.pageYOffset / (document.body.clientHeight - window.innerHeight)) *
@@ -54,56 +78,50 @@ function App() {
     setgradientDegrees(degrees);
   };
 
-  useEffect(() => {
-    setData(TimData);
-  }, [data]);
+  const initData = () => {
+    setData(TimData)
+  }
 
-  const getIndexImg = (num) => {
-    if (num < 10) {
-      return "000" + num;
-    } else {
-      return "00" + num;
+  const initFont = () =>{
+    document.fonts.ready.then( () =>  {
+      setFontsLoaded(true);
+      console.log("fonts loaded");
+    }).catch( () => console.log("error"));
+  }
+
+  const checkImgLoad = () => {
+    if(!imgLoaded){ 
+      preloaded++;
+      if (preloaded === 60) {
+        setImgLoaded(true);
+        console.log("all img load", imgLoaded);
+      }
     }
   };
-  function preLoaderImg(e) {
-    for (let i = 0; i < images.length; i++) {
-      var tempImage = new Image();
-      tempImage.addEventListener("load", progress, true);
-      tempImage.src = images[i];
-    }
-  }
-  function progress() {
-    preloaded++;
-    if (preloaded == images.length) {
-      setLoaded(true);
-    }
-  }
-
   useEffect(() => {
-    const colorTheme = window.localStorage.getItem("website_theme");
-    if (colorTheme) {
-      setcolorTheme(colorTheme);
-    } else {
-      window.localStorage.setItem("website_theme", "dark");
-      setDarkTheme(true);
+    //init data
+    initData();
+    
+    //init color theme
+    getColorTheme();
+
+    //init fonts
+    initFont();
+
+    if(!imgLoaded){
+      nodeImgs.forEach( (img) => {
+        img.addEventListener("load", checkImgLoad, true);
+      });
     }
 
-    async function areFontsReady() {
-      await document.fonts.ready;
-      setWebFontsLoaded(true);
+    console.log(data, fontsLoaded);
+    if(data.length > 1 && fontsLoaded && imgLoaded){
+      setIsloading(false);
+      console.log("toggle loading", isLoading)
     }
+  }, [data, fontsLoaded, imgLoaded])
 
-    for (let i = 1; i < 61; i++) {
-      let url =
-        window.location.origin + "/sprite-main/" + getIndexImg(i) + ".png";
-      images.push(url.toString());
-    }
-    areFontsReady();
-    window.addEventListener("DOMContentLoaded", preLoaderImg, true);
-  }, [loaded]);
-
-  return (
-    <div
+  return ( <div
       className={
         darkTheme ? "container-pages light_mode" : "container-pages dark_mode"
       }
@@ -116,7 +134,7 @@ function App() {
         }}
       ></div>
       <AnimatePresence>
-        {!loaded && !webFontsLoaded && (
+        {isLoading && (
           <motion.div
             className="container-loader"
             initial={{ opacity: 1 }}
@@ -136,7 +154,7 @@ function App() {
         )}
       </AnimatePresence>
 
-      {data && loaded && webFontsLoaded && (
+      {!isLoading && (
         <Router>
           <Route
             render={({ location }) => (

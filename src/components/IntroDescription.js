@@ -4,7 +4,7 @@ import { mapRange, myDist } from "../utils";
 import "./IntroDescription.css";
 
 const IntroDescription = ({ content }) => {
-  let [windowW, setWindowW] = useState();
+  const [windowW, setWindowW] = useState(window.innerWidth);
   let maxDist;
   let mouse = { x: 0, y: 0 };
   let cursor = {
@@ -12,22 +12,7 @@ const IntroDescription = ({ content }) => {
     y: window.innerHeight,
   };
 
-  window.addEventListener("mousemove", function (e) {
-    cursor.x = e.clientX;
-    cursor.y = e.clientY;
-  });
 
-  window.addEventListener(
-    "touchmove",
-    function (e) {
-      var t = e.touches[0];
-      cursor.x = t.clientX;
-      cursor.y = t.clientY;
-    },
-    {
-      passive: false,
-    }
-  );
 
   var Char = function (container, char, el) {
     var span = document.createElement("span");
@@ -178,11 +163,33 @@ const IntroDescription = ({ content }) => {
   };
 
   useEffect(() => {
-    setWindowW(window.innerWidth);
-
     new VFont("domaines-idtt");
     new VFont("domaines-web");
     new VFont("domaines-motion");
+  });
+
+  const handleResize = () => {
+    setWindowW(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", function (e) {
+      cursor.x = e.clientX;
+      cursor.y = e.clientY;
+    });
+  
+    window.addEventListener(
+      "touchmove",
+      function (e) {
+        var t = e.touches[0];
+        cursor.x = t.clientX;
+        cursor.y = t.clientY;
+      },
+      {
+        passive: false,
+      }
+    );
   });
 
   return (
@@ -275,7 +282,7 @@ const IntroDescription = ({ content }) => {
       </article>
       <article className="about-description">
         {(() => {
-          if (windowW < 600) {
+          if (windowW < 677) {
             return (
               <h2>
                 Je suis <strong>designer graphique</strong> &amp;{" "}
