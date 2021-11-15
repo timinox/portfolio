@@ -232,7 +232,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
             </div>
             <motion.div
               className="detailed-information"
-              style={{ display: "none", paddingTop: windowW > 900 ?  0 : 100}}
+              style={{ display: "none", paddingTop: windowW > 900 ?  200 : 100}}
               transition={exitProjectContent}
             >
               <div className="container">
