@@ -137,7 +137,17 @@ src: url('/fonts/clash-grotesk.woff2') format("woff2");
 @font-face {
   font-family: "Darker-Grotesque";
   font-weight: 800;
-  src: url('/fonts/darker-grotesk-bold.woff2') format('woff2');
+  src: url('/fonts/DarkerGrotesque-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Darker-Grotesque";
+  font-weight: 600;
+  src: url('/fonts/DarkerGrotesque-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Darker-Grotesque";
+  font-weight: 400;
+  src: url('/fonts/DarkerGrotesque-Regular.ttf') format('truetype');
 }
 
 /*************/
@@ -183,6 +193,12 @@ src: url('/fonts/clash-grotesk.woff2') format("woff2");
   background-color: var(--bg-color);
   color: var(--light-color);
   min-height: 100vh
+}
+@media (max-width: 800px) { 
+  .container-pages{
+    width: 100%;
+    overflow-x: hidden;
+  }
 }
 /***********/
 /* COMMUNS */

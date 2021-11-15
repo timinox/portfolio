@@ -171,25 +171,27 @@ const IntroDescription = ({ content }) => {
   const handleResize = () => {
     setWindowW(window.innerWidth);
   }
+  const handleMouseMove = (e) => {
+    cursor.x = e.clientX;
+    cursor.y = e.clientY;
+  }
+  const handleMouseTouch = (e) =>{
+    let t = e.touches[0];
+    cursor.x = t.clientX;
+    cursor.y = t.clientY;
+  } 
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", function (e) {
-      cursor.x = e.clientX;
-      cursor.y = e.clientY;
-    });
-  
-    window.addEventListener(
-      "touchmove",
-      function (e) {
-        var t = e.touches[0];
-        cursor.x = t.clientX;
-        cursor.y = t.clientY;
-      },
-      {
-        passive: false,
-      }
-    );
+    window.addEventListener("mousemove", handleMouseMove );
+    window.addEventListener("touchmove", handleMouseTouch);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove );
+      window.removeEventListener("touchmove", handleMouseTouch);
+    }
+
   });
 
   return (
@@ -314,7 +316,7 @@ const IntroDescription = ({ content }) => {
             <br /> design
           </h2>
           <div className="svg-help">
-            <p>Hover</p>
+            <p>{windowW < 800 ? "Tap": "Hover"}</p>
             <svg
               width="140"
               height="125"

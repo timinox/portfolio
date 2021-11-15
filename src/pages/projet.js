@@ -91,6 +91,7 @@ let indexPrevProject;
 let indexNextProject;
 const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
   const { scrollYProgress } = useViewportScroll();
+  const [windowW, setWindowW] = useState(window.innerWidth);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
   const [canScroll, setCanScroll] = useState(false);
   const [transitionPage, setTransipage] = useState(null);
@@ -125,6 +126,9 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
     }
   }
 
+  const handleResize = () => {
+    setWindowW(window.innerWidth);
+  }
   if (transitionPage) {
     console.log("transi projet");
     window.scrollTo(0, 0);
@@ -136,6 +140,10 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
 
   useEffect(() => {
     handleScroll();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
   });
 
   return (
@@ -182,7 +190,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                   </motion.div>
                 </div>
               </div>
-              <div className="bottom-row">
+              <div className="bottom-row" style={{height: windowW > 900 ? 800 : 400}}>
                 <div className="bottom">
                   <motion.div className="image-container-single">
                     <motion.div
@@ -194,9 +202,10 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                       animate={{
                         y: 0,
                         width: "100%",
-                        height: window.innerWidth > 1240 ? 1000 : 500,
+                        height: windowW > 900 ? 800 : 400,
                         transition: { delay: 0.2, ...transition },
                       }}
+                      
                       className="thumbnail-single"
                     >
                       <div className="frame-single">
@@ -210,7 +219,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                           initial={{ scale: 1.0, opacity: 0.5 }}
                           animate={{
                             transition: { delay: 0.2, ...transition },
-                            y: window.innerWidth > 1440 ? -200 : 0,
+                            y: windowW > 900 ? -100 : 0,
                             opacity: 1,
                           }}
                         />
@@ -223,7 +232,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
             </div>
             <motion.div
               className="detailed-information"
-              style={{ display: "none" }}
+              style={{ display: "none", paddingTop: windowW > 900 ?  0 : 100}}
               transition={exitProjectContent}
             >
               <div className="container">

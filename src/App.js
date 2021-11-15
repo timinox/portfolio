@@ -34,7 +34,6 @@ function preLoaderImg() {
     }
 }
 preLoaderImg();
-let changeImg = false;
 
 function App() {
   const [data, setData] = useState([]);
@@ -50,7 +49,6 @@ function App() {
   const TransitionDelayAnim = 0.6;
 
   const toggleTheme = () => {
-    console.log(darkTheme, colorTheme);
     if (darkTheme) {
       setDarkTheme(false);
       window.localStorage.setItem("website_theme", "light");
@@ -98,6 +96,7 @@ function App() {
       }
     }
   };
+
   useEffect(() => {
     //init data
     initData();
@@ -114,7 +113,7 @@ function App() {
       });
     }
 
-    console.log(data, fontsLoaded);
+    console.log(data, fontsLoaded, imgLoaded);
     if(data.length > 1 && fontsLoaded && imgLoaded){
       setIsloading(false);
       console.log("toggle loading", isLoading)
@@ -147,7 +146,7 @@ function App() {
             }}
           >
             <div className="loader-txt">
-              <span>loading</span>
+              <span>Loading</span>
             </div>
             <div className="loader-spinner"></div>
           </motion.div>

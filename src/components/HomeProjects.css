@@ -112,8 +112,8 @@
   .project-img{
     display: flex;
     justify-content: center;
-    will-change: transform;
-    transition: transform 300ms ;
+    transition: transform 400ms ;
+    /* will-change: transform; */
   }
   .container-img{
     height: 300px;
@@ -139,5 +139,21 @@
   div.container-img{
     height: 180px;
     margin: 0 10px;
+  }
+  .project-info h3{
+    font-size: 2em;
+  }
+  .project-info h5{
+    margin-top: 5px;
+    height: inherit;
+  }
+  .project-info h5 span{
+    letter-spacing: 0px;
+    top: 0px;
+    font-size: 1em;
+    height: inherit;
+  }
+  .project-info h5 span.space-letter{
+    width: 5px!important;
   }
 }

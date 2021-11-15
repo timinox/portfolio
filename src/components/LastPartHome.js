@@ -203,7 +203,7 @@ function Contact({ data }) {
       <div className="container-img-contact">
         <img
           src={
-            window.location.origin + `sprite-main/${getIndexImg(value + 1)}.png`
+            window.location.origin + `/sprite-main/${getIndexImg(value + 1)}.png`
           }
           alt="alt text"
         />

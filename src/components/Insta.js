@@ -7,23 +7,30 @@ function RepeatDiv({ posX, posY, index }) {
   const elToDupli = useRef(null);
 
   useEffect(() => {
-    width = elToDupli.current.offsetWidth / 2;
-    height = elToDupli.current.offsetHeight / 2;
+    console.log(posX, posY);
+    if(elToDupli.current && posX && posY){
+      width = elToDupli.current.offsetWidth / 2;
+      height = elToDupli.current.offsetHeight / 2;
+    }
   }, []);
 
   return (
-    <div
-      className={`container-img-insta img-${index}`}
-      ref={elToDupli}
-      key={index}
-      style={{
-        left: posX - width + "px",
-        top: posY - height + "px",
-      }}
-      className="container-img-insta img1"
-    >
-      <h4>Click</h4>
-    </div>
+    <>
+    {posX && posY && (
+      <div
+        className={`container-img-insta img-${index}`}
+        ref={elToDupli}
+        key={index}
+        style={{
+          left: posX - width + "px",
+          top: posY - height + "px",
+        }}
+        className="container-img-insta img1"
+      >
+        <h4>Click</h4>
+      </div>
+    )}
+    </>
   );
 }
 let i = 1;
@@ -37,21 +44,12 @@ function Insta() {
   const help = useRef(null);
   let timerEnd;
 
-  function MoveOnInsta(e) {
-    const scrollDist = containerInsta.current.getBoundingClientRect().top;
-    setmousePos({
-      x: e.clientX,
-      y: e.clientY - scrollDist,
-    });
-    cloneEl();
-  }
-
   const cloneEl = () => {
     cDiv = customDiv;
     newDiv = {
       copyNumber: i++,
-      posX: mousePos.x,
-      posY: mousePos.y,
+      posX: Math.floor(mousePos.x),
+      posY: Math.floor(mousePos.y),
     };
     cDiv.push(newDiv);
     setCustomDiv(cDiv);
@@ -81,8 +79,23 @@ function Insta() {
     }, 500);
   }
 
+  const handleMouseMove = (e) => {
+    const scrollDist = containerInsta.current.getBoundingClientRect().top;
+    setmousePos({
+      x: e.clientX,
+      y: e.clientY - scrollDist,
+    });
+    cloneEl();
+  }
+
   useEffect(() => {
     removeImg();
+
+    containerInsta.current.addEventListener("mousemove", handleMouseMove); 
+
+    return () => {
+      containerInsta.current.removeEventListener("mousemove", handleMouseMove);
+    }
   }, [removeImg]);
 
   return (
@@ -95,7 +108,7 @@ function Insta() {
         href="https://www.instagram.com/thim_ox/"
         target="_blank"
         rel="noopener noreferrer"
-        onMouseMove={MoveOnInsta}
+        // onMouseMove={MoveOnInsta}
       >
         {customDiv.length > 0 &&
           customDiv.map((cdiv, i) => {

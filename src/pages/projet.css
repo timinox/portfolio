@@ -67,7 +67,7 @@
 }
 
 .bottom-row {
-	height: 70vh;
+	min-height: 50vh;
 	position: relative;
 }
 .bottom {
@@ -104,14 +104,14 @@
 .text {
 	margin-top: 3px;
 	color: #C4C4C4;
-	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 400;
+	line-height: 1.1em;
 }
 
 /* section content */
 
 .detailed-information{
-	padding: 200px 40px 0 40px;
+	padding: 0 40px 0 40px;
 	margin: 0 auto;
 	max-width: 1000px;
 }
@@ -122,8 +122,11 @@
 	justify-content: space-between;
 }
 .container-tagline{
-	margin-right: 10px;
+	margin-right: 20px;
 	min-width: 300px;
+}
+.container-tagline h2{
+	font-size: 2rem;
 }
 
 .detailed-information .row a{
@@ -184,6 +187,7 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	height: 100%;
 }
 .switch-project h3{
 	position: absolute;
@@ -196,12 +200,13 @@
 }
 .prev-pro-img, .next-pro-img{
 	width: 100%;
-	max-height: 300px;
+	height: 100%;
 	overflow: hidden;
 }
 .prev-pro-img img, .next-pro-img img{
 	max-height: inherit;
 	width: 100%;
+	height: 100%;
 	object-fit: cover;
 	opacity: 0;
 	transition: opacity 200ms;
@@ -234,10 +239,10 @@
 		display: none;
 	}
 	div.detailed-information .row{
-		flex-direction: column;
+		flex-direction: column-reverse;
 	}
-	.container-tagline{
-		margin-bottom: 20px;
+	.container-tagline > h2{
+		display: none;
 	}
 	.container-tagline a{
 		margin-top: 20px;
@@ -263,6 +268,10 @@
 	.switch-project h3{
 		font-size: 1.4em;
 	}
+	.detailed-information{
+		padding: 200px 10px 0 10px;
+	}
+
 }
 @media (max-width: 500px) { 
 	div.model span{

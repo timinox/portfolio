@@ -82,7 +82,6 @@ const ParseLetter = ({ word }) => {
               className="space-letter"
               style={{
                 "--data-letter": index,
-                height: 25,
                 width: 7,
               }}
             >
@@ -105,15 +104,15 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
   const { scrollYProgress } = useViewportScroll();
   const [translateY, setTranslateY] = useState(0);
   if (index % 2) {
-    direction = window.innerWidth; // window.innerWidth;
+    direction = window.innerHeight; // window.innerWidth;
   } else {
-    direction = -window.innerWidth;
+    direction = -window.innerHeight;
   }
 
   let move = useTransform(
     scrollYProgress,
     [
-      containerInfo.top / document.body.offsetHeight,
+      (containerInfo.top - 500) / document.body.offsetHeight ,
       containerInfo.end / document.body.offsetHeight,
     ],
     [0, direction]

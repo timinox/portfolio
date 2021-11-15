@@ -5,7 +5,7 @@
     /* position: absolute; */
     /* width: 100%; */
     /* bottom: 0; */
-    font-family: "Anybody", "Monument", sans-serif;
+    font-family: "Darker-Grotesque","Anybody", "Monument", sans-serif;
     font-size: 0.9em;
     font-variation-settings: 'wght' 350, 'wdth' 110;
     color: var(--light-color);
@@ -15,15 +15,15 @@
   }
   #homePage footer{
     margin-top: 350px;
-  
   }
   footer p{
     padding: 5px 0;
     color: var(--light-color-6);
+    font-weight: 400;
   }
-  footer p bold{
+  footer p strong{
     color: var(--light-color-8);
-    font-variation-settings: 'wght' 550, 'wdth' 110;
+    font-weight: 600;
   }
   /* footer p:last-child{
     padding-top: 20px;

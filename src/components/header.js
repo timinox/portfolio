@@ -187,7 +187,7 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
     let target = url[url.length - 1].toLowerCase();
     let element = document.getElementById(target);
     element && element.scrollIntoView({ behavior: "smooth", block: "start" });
-    new VFont("bg-tim");
+    // new VFont("bg-tim");
   }, []);
 
   return (
