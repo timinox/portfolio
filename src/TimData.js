@@ -17,7 +17,7 @@ const TimData = [
       projectLink: "Lien",
       tagline: "Un teaser vidéo dynamique et immersif.",
       description:
-        "J'ai réalisé le teaser du festival Électrochoc 2018-2019 de la scène de musique: Les Abattoirs. En me basant sur la musique Électronique, j'ai cherché à retranscrire l'ambiance rythmée dans un univers profond et immersif. Collaboration avec l'incroyable Hugo Tomasi pour la conception 3D.",
+        "J'ai réalisé le teaser du festival Électrochoc 2018-2019 de la scène de musique \"Les Abattoirs\" à Bourgoin-Jallieu. En me basant sur la musique Électronique, j'ai cherché à retranscrire l'ambiance rythmée dans un univers profond et immersif. Collaboration avec l'incroyable Hugo Tomasi pour la conception 3D.",
       thumb: "thumb.jpg",
       imgsHome: ["0.jpg", "1.jpg", "2.mp4"],
       imgsAll: ["0.jpg", "1.jpg", "2.mp4"],
@@ -66,9 +66,9 @@ const TimData = [
       date: "2021",
       projectLinkBtn: "Découvrir le site",
       projectLink: "https://timothejoubert.com/pogo/",
-      tagline: "Un site retraçant ma recherche autour de la typo numérique.",
+      tagline: "Un site retraçant ma recherche autour de la typographie numérique.",
       description:
-        "J'ai souhaité me réconcilier avec la typographie en la manipulant avec du code. J'ai cherché à comprendre comment on peut la reconstituer avec un langage de programmation. Puis je me suis amusé à la déformer, la violenter, la bousculer, en sommes la manipuler comme une matière tangible. Et enfin lui apporter ce que le web à de plus fondamental: de l'interactivité, ce qui la rend inévitablement plus attractive.",
+        "J'ai souhaité me réconcilier avec la typographie en la manipulant avec du code. J'ai expérimenté les possibilités qu'offrent les typographies variables afin de voir comment elles peuvent exploitées sur le web. </br></br> Dans ce projet, la typographie devient un objet purement graphique et interactif. A la manière d'un pogo, je me suis amusé à déformer, violenter, bousculer les mots pour les détourner de leur usage premier.",
       thumb: "thumb.jpg",
       imgsHome: ["0.png", "1.jpg", "2.jpg", "3.gif"],
       imgsAll: ["0.png", "1.jpg", "2.jpg", "3.gif"],

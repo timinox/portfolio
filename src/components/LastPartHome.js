@@ -107,7 +107,7 @@ function About({ data }) {
 
       <article className="container-reference">
         <div className="title-cv">
-          <h3>Référence</h3>
+          <h3>Références</h3>
         </div>
         <div className="content-cv">
           <a

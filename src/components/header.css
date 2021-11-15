@@ -33,8 +33,9 @@
     /* font-family:'Compressa VF'; */
     display: grid;
     grid-template-columns: repeat(8, auto);
-    grid-template-rows: repeat(auto-fill, auto);
+    /* grid-template-rows: repeat(auto-fill, auto); */
     justify-content: space-between;
+    align-items: center;
     /* column-gap: 20px; */
     row-gap: 30px;
   
@@ -59,7 +60,7 @@
   }
   #bg-tim span {
   font-family:'Anybody';
-
+  display: inline-block;
   user-select: none;
   }
   #bg-tim.stroke span {

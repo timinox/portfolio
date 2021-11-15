@@ -47,6 +47,7 @@
 }
 .container-img-contact img{
   width: 100%;
+  transform: rotate(-10deg);
 }
 
   /***********/

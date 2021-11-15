@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Projet from "./pages/projet";
 import PageNotFound from "./pages/PageNotFound";
 
+import "./index.css";
 import "./App.css";
 
 //data

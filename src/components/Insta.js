@@ -7,8 +7,7 @@ function RepeatDiv({ posX, posY, index }) {
   const elToDupli = useRef(null);
 
   useEffect(() => {
-    console.log(posX, posY);
-    if(elToDupli.current && posX && posY){
+    if(elToDupli.current){
       width = elToDupli.current.offsetWidth / 2;
       height = elToDupli.current.offsetHeight / 2;
     }
@@ -35,7 +34,6 @@ function RepeatDiv({ posX, posY, index }) {
 }
 let i = 1;
 let cDiv, newDiv;
-let time = 0;
 function Insta() {
   const [mousePos, setmousePos] = useState({ x: null, y: null });
   const [customDiv, setCustomDiv] = useState([]);
@@ -90,9 +88,7 @@ function Insta() {
 
   useEffect(() => {
     removeImg();
-
     containerInsta.current.addEventListener("mousemove", handleMouseMove); 
-
     return () => {
       containerInsta.current.removeEventListener("mousemove", handleMouseMove);
     }

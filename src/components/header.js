@@ -1,198 +1,138 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { mapRange, myDist } from "../utils";
 
 import BtnSwitchColor from "./BtnSwitchColor";
 
+// import { mapRange } from "./../utils.js";
+
 import "./header.css";
 
-const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
-  var maxDist;
-  var mouse = { x: 0, y: 0 };
-  var cursor = {
-    x: window.innerWidth,
-    y: window.innerHeight,
+const SpanItem = ({children, cursor, spanClass, spanData}) => {
+  let currentSpan = useRef(null);
+  let maxDist = window.innerWidth/4;
+
+  const changeStyle = () => {
+    spanData.opacity = getAttr(spanData.dist, 0.06, 0.1);
+    spanData.width = getAttr(spanData.dist, 80, 200);
+    spanData.weight = getAttr(spanData.dist, 250, 900);
+    spanData.slant = mapRange(getAttr(spanData.dist, 0, 10), 0, 10, 0, -10);
+  }
+
+  const getAttr = (dist, min, max) => {
+    var wght = max - Math.abs((max * dist) / maxDist);
+    return Math.max(min, wght + min);
   };
 
-  window.addEventListener("mousemove", function (e) {
-    cursor.x = e.clientX;
-    cursor.y = e.clientY;
-  });
+  if(currentSpan.current){
+    let left = currentSpan.current.getBoundingClientRect().x;
+    let top = currentSpan.current.getBoundingClientRect().y;
+    let w = Math.floor(currentSpan.current.getBoundingClientRect().width);
+    let h = Math.floor(currentSpan.current.getBoundingClientRect().height);
 
-  window.addEventListener(
-    "touchmove",
-    function (e) {
-      var t = e.touches[0];
-      cursor.x = t.clientX;
-      cursor.y = t.clientY;
-    },
-    {
-      passive: false,
+    let currentDist = myDist(cursor.x ,cursor.y, left + w,top + h)
+    spanData.dist = currentDist;
+    if(spanData.dist !== 0){
+      changeStyle();
     }
-  );
-
-  var Char = function (container, char, el) {
-    var span = document.createElement("span");
-    span.setAttribute("data-char", char);
-    span.innerText = char;
-    container.appendChild(span);
-    this.el = el;
-
-    this.getDist = function () {
-      this.pos = span.getBoundingClientRect();
-      return myDist(
-        mouse.x,
-        mouse.y,
-        this.pos.x + this.pos.width,
-        this.pos.y + this.pos.height
-      );
-    };
-    this.getAttr = function (dist, min, max) {
-      var wght = max - Math.abs((max * dist) / maxDist);
-      return Math.max(min, wght + min);
-    };
-    this.update = function (args) {
-      var dist = this.getDist();
-      this.wdth = args.wdth ? ~~this.getAttr(dist, 50, 200) : 100;
-      this.timScale = args.timScale ? ~~this.getAttr(dist, 0.7, 1.8) : 1;
-      this.wght = args.wght ? ~~this.getAttr(dist, 100, 900) : 400;
-      this.alpha = args.alpha ? this.getAttr(dist, 0.08, 0.2).toFixed(2) : 0.3;
-      this.ital = args.ital ? this.getAttr(dist, 0, 1).toFixed(2) : 0;
-      this.draw();
-    };
-    this.draw = function () {
-      if (el === "bg-tim") {
-        var style = "";
-        style += "opacity: " + this.alpha + ";";
-        // style += "justify-self: " + this.stretch() ? "stretch" : "center" + ";";
-        style +=
-          "font-variation-settings: 'wght' " +
-          this.wght +
-          ", 'wdth' " +
-          this.wdth +
-          ", 'ital' " +
-          this.ital +
-          ", 'slnt' " +
-          this.ital * -10 +
-          ";";
-      } else {
-        var style = "";
-        style +=
-          "font-variation-settings: 'wght' " +
-          mapRange(this.wght, 100, 900, 250, 900) +
-          ", 'wdth' " +
-          mapRange(this.wdth, 50, 200, 90, 180) +
-          ", 'ital' " +
-          this.ital +
-          ", 'slnt' " +
-          this.ital * -10 +
-          ";";
-      }
-      span.style = style;
-    };
-    return this;
-  };
-
-  var VFont = function (id) {
-    this.el = id;
-    this.scale = false;
-    this.flex = false;
-    this.alpha = true;
-    this.stroke = false;
-    this.width = true;
-    this.weight = true;
-    this.timScale = false;
-    this.italic = true;
-    this.stretch = false;
-    var title,
-      chars = [];
-    let str = "Tim";
-
-    this.init = function () {
-      title = document.getElementById(this.el);
-      //str = title.innerText;
-      if (this.el === "bg-tim") {
-        title.innerHTML = "";
-        for (let i = 0; i < 64; i++) {
-          let _char = new Char(title, str, this.el);
-          chars.push(_char);
-        }
-      } else {
-        str = title.innerText;
-        title.innerHTML = "";
-        for (let i = 0; i < str.length; i++) {
-          let _char = new Char(title, str[i], this.el);
-          chars.push(_char);
-        }
-      }
-      this.set();
-      window.addEventListener("resize", this.setSize.bind(this));
-    };
-
-    this.set = function () {
-      title.className = "";
-      title.className += this.flex ? " flex" : "";
-      title.className += this.stroke ? " stroke" : "";
-      this.setSize();
-    };
-
-    this.setSize = function () {
-      var fontSize = window.innerWidth / str.length;
-      if (this.scale) {
-        var scaleY = (
-          window.innerHeight / title.getBoundingClientRect().height
-        ).toFixed(2);
-        var lineHeight = scaleY * 0.8;
-        title.style =
-          "font-size: " +
-          fontSize +
-          "px; transform: scale(1," +
-          scaleY +
-          "); line-height: " +
-          lineHeight +
-          "em;";
-      }
-    };
-
-    this.animate = function () {
-      mouse.x += (cursor.x - mouse.x) / 10;
-      mouse.y += (cursor.y - mouse.y) / 10;
-      requestAnimationFrame(this.animate.bind(this));
-      this.render();
-    };
-
-    this.render = function () {
-      if (this.el === "bg-tim") {
-        maxDist = title.getBoundingClientRect().width / 3.5;
-      } else {
-        maxDist = title.getBoundingClientRect().width / 2.5;
-      }
-      //maxDist = 400;
-      for (let i = 0; i < chars.length; i++) {
-        chars[i].update({
-          wght: this.weight,
-          wdth: this.width,
-          ital: this.italic,
-          alpha: this.alpha,
-        });
-      }
-    };
-    this.init();
-    this.animate();
-    return this;
-  };
+  }
 
   useEffect(() => {
-    let url = window.location.href.split("/");
-    let target = url[url.length - 1].toLowerCase();
-    let element = document.getElementById(target);
-    element && element.scrollIntoView({ behavior: "smooth", block: "start" });
-    // new VFont("bg-tim");
-  }, []);
+    return () => {
+    }
+  }, [cursor])
+
+  return(
+    <>
+    <span 
+      ref={currentSpan}
+      className={spanClass} 
+      style={{
+        position: "relative",
+        opacity: spanData.opacity,
+        fontVariationSettings: `"wght" ${spanData.weight}, "wdth" ${spanData.width}, "slnt" ${spanData.slant}`
+      }}
+    >
+      {children}
+      {/* <span style={{
+        position:"absolute", 
+        display: "block",
+        left:-5,
+        right:-5,
+        top:-5,
+        bottom:-5,
+        // border: "10px solid red",
+        zIndex: -2,
+        backgroundColor: "black",
+        }}></span> */}
+    </span>
+    </>
+  )
+}
+
+
+const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
+  const headerContainer = useRef(null);
+  const [cursor, setCursor] = useState({
+    x: window.innerWidth,
+    y: window.innerHeight,
+  });
+
+  const handleMouseMove = (e) => {
+    setCursor({
+      x: e.clientX,
+      y: e.clientY
+    });
+  }
+  const handleTouchMove = (e) => {
+    var t = e.touches[0];
+    setCursor({
+      x: t.clientX,
+      y: t.clientY
+    });
+  }
+
+  let spanArray = [];
+  const printSpan = () => {
+    for (var i = 0; i < 64; i++) {
+      let sItem = {
+        index: null,
+        posX: null,
+        posY: null,
+        width: null,
+        height: null,
+        opacity: 0.06,
+        width: 80,
+        weight: 250,
+        slant: 0,
+      }
+      spanArray.push(sItem);
+    }
+    //console.log(spanArray);
+    return spanArray;
+  };
+  printSpan();
+
+  useEffect(() => {
+    //let url = window.location.href.split("/");
+    //let target = url[url.length - 1].toLowerCase();
+    //let element = document.getElementById(target);
+    //element && element.scrollIntoView({ behavior: "smooth", block: "start" });
+    //new VFont("bg-tim");
+
+    if(headerContainer.current){
+      headerContainer.current.addEventListener("mousemove", handleMouseMove);
+      headerContainer.current.addEventListener("touchmove", handleTouchMove, {passive: false,});
+    }
+    return () => {
+      headerContainer.current.removeEventListener("mousemove", handleMouseMove);
+      headerContainer.current.removeEventListener("touchmove", handleTouchMove, {passive: false,});
+    }
+  }, [spanArray]);
 
   return (
-    <header>
-      <motion.div
+    <header ref={headerContainer}>
+      {/* <motion.div
         id="bg-tim"
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -200,7 +140,26 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
           scale: 1,
           opacity: 1,
         }}
-      ></motion.div>
+      >
+      </motion.div> */}
+      <motion.div id="bg-tim"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{
+          transition: { duration: 0.5, delay: pageDelay + 0.3 },
+          scale: 1,
+          opacity: 1,
+        }}
+      >
+        {spanArray.length > 1 && (
+          spanArray.map( (content, i) => {
+            return( 
+              <SpanItem key={i} spanClass={`spanItem-${i}`} spanData={content} cursor={cursor}>Tim</SpanItem>
+            )
+          })
+        )}
+      </motion.div>
+      {/* <ContainerItems word="TIM" cursor={cursor} /> */}
+
       <div className="container-header">
         <motion.h1
           initial={{

@@ -48,12 +48,13 @@
   }
   .about-description > h2{
     font-size: 2.3em;
+
     margin: 0 20px;
-    font-variation-settings: 'wght' 250, 'wdth' 90; 
+    font-variation-settings: 'wght' 250, 'wdth' 100; 
   }
   .about-description > h2 strong{
     font-family: "Anybody", "Monument", sans-serif;
-    font-variation-settings: 'wght' 550, 'wdth' 80; 
+    font-variation-settings: 'wght' 550, 'wdth' 100; 
 
   }
   .about-description bold{
@@ -64,26 +65,26 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
-    padding: 5px 20px;
+    margin-top: 40px;
+    padding: 20px 20px 10px 20px;
     border-radius: 5px;
     background-color: var(--light-color-2);
     /* width: 100%; */
   }
   .about-support h2{
-    font-size: 2em; 
     color: var(--light-color);
     padding: 10px 40px 7px 40px;
-    font-variation-settings: 'wght' 450, 'wdth' 90;  
-    /* text-transform: uppercase; */
     border-radius: 2px;
     cursor: default;
+  }
+  .about-support h2 span{
+    font-size: 3rem; 
+    font-variation-settings: 'wght' 250, 'wdth' 80;  
     line-height: 2rem;
   }
-  .about-support:hover .svg-help p, .about-support:hover .svg-help path{
-    /* visibility: hidden; */
+  /* .about-support:hover .svg-help p, .about-support:hover .svg-help path{
     animation-play-state: paused;
-  }
+  } */
   .svg-help{
     position: absolute;
     bottom: 0;

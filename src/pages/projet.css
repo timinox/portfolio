@@ -113,7 +113,7 @@
 .detailed-information{
 	padding: 0 40px 0 40px;
 	margin: 0 auto;
-	max-width: 1000px;
+	max-width: 1100px;
 }
 .detailed-information .row{
 	position: relative;
@@ -123,10 +123,11 @@
 }
 .container-tagline{
 	margin-right: 20px;
-	min-width: 300px;
+	min-width: 350px;
 }
 .container-tagline h2{
 	font-size: 2rem;
+	line-height: 1.3em;
 }
 
 .detailed-information .row a{
@@ -135,7 +136,7 @@
 	display: inline-block;
 	position: relative;
 	text-transform: uppercase;
-	margin-top: 15px;
+	margin-top: 30px;
 }
   
 .detailed-information .row a:after {
@@ -156,13 +157,14 @@
 	transform-origin: bottom left;
 }
 .detailed-information p {
-	font-size: 1.2em;
+	font-size: 1.3em;
+	font-weight: 400;
 }
 .container-media-project{
 	margin: 200px 0;
 }
 .container-img-project{
-	padding: 10px 0;
+	padding: 20px 0;
 }
 .container-img-project,  .container-img-project img ,  .container-img-project video{
 	width: 100%;

@@ -104,16 +104,16 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
   const { scrollYProgress } = useViewportScroll();
   const [translateY, setTranslateY] = useState(0);
   if (index % 2) {
-    direction = window.innerHeight; // window.innerWidth;
+    direction = window.innerHeight * 1.2; // window.innerWidth;
   } else {
-    direction = -window.innerHeight;
+    direction = -window.innerHeight * 1.2;
   }
 
   let move = useTransform(
     scrollYProgress,
     [
-      (containerInfo.top - 500) / document.body.offsetHeight ,
-      containerInfo.end / document.body.offsetHeight,
+      (containerInfo.top - window.innerHeight) / document.body.offsetHeight ,
+      (containerInfo.end + window.innerHeight * 2) / document.body.offsetHeight,
     ],
     [0, direction]
   );

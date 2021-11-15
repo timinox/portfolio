@@ -1,201 +1,128 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { mapRange, myDist } from "../utils";
 
 import "./IntroDescription.css";
 
-const IntroDescription = ({ content }) => {
-  const [windowW, setWindowW] = useState(window.innerWidth);
-  let maxDist;
-  let mouse = { x: 0, y: 0 };
-  let cursor = {
-    x: window.innerWidth,
-    y: window.innerHeight,
+const LetterItem = ({cursor, letterData}) => {
+  let currentLetter = useRef(null);
+  let maxDist = 70;
+
+  const changeStyle = () => {
+    letterData.opacity = getAttr(letterData.dist, 0.06, 0.1);
+    letterData.width = getAttr(letterData.dist, 80, 200);
+    letterData.weight = getAttr(letterData.dist, 250, 900);
+    letterData.slant = mapRange(getAttr(letterData.dist, 0, 10), 0, 10, 0, -20);
+  }
+  const getAttr = (dist, min, max) => {
+    var wght = max - Math.abs((max * dist) / maxDist);
+    return Math.max(min, wght + min);
   };
 
+  if(currentLetter.current){
+    let left = currentLetter.current.getBoundingClientRect().x;
+    let top = currentLetter.current.getBoundingClientRect().y;
+    let w = Math.floor(currentLetter.current.getBoundingClientRect().width);
+    let h = Math.floor(currentLetter.current.getBoundingClientRect().height);
 
-
-  var Char = function (container, char, el) {
-    var span = document.createElement("span");
-    span.setAttribute("data-char", char);
-    span.innerText = char;
-    container.appendChild(span);
-    this.el = el;
-
-    this.getDist = function () {
-      this.pos = span.getBoundingClientRect();
-      return myDist(
-        mouse.x,
-        mouse.y,
-        this.pos.x + this.pos.width,
-        this.pos.y + this.pos.height
-      );
-    };
-    this.getAttr = function (dist, min, max) {
-      var wght = max - Math.abs((max * dist) / maxDist);
-      return Math.max(min, wght + min);
-    };
-    this.update = function (args) {
-      var dist = this.getDist();
-      this.wdth = args.wdth ? ~~this.getAttr(dist, 50, 200) : 100;
-      this.wght = args.wght ? ~~this.getAttr(dist, 100, 900) : 400;
-      this.alpha = args.alpha ? this.getAttr(dist, 0.08, 0.2).toFixed(2) : 0.3;
-      this.ital = args.ital ? this.getAttr(dist, 0, 1).toFixed(2) : 0;
-      this.draw();
-    };
-    this.draw = function () {
-      if (el === "bg-tim") {
-        var style = "";
-        style += "opacity: " + this.alpha + ";";
-        style +=
-          "font-variation-settings: 'wght' " +
-          this.wght +
-          ", 'wdth' " +
-          this.wdth +
-          ", 'ital' " +
-          this.ital +
-          ", 'slnt' " +
-          this.ital * -10 +
-          ";";
-      } else {
-        var style = "";
-        style +=
-          "font-variation-settings: 'wght' " +
-          mapRange(this.wght, 100, 900, 250, 900) +
-          ", 'wdth' " +
-          mapRange(this.wdth, 50, 200, 90, 180) +
-          ", 'ital' " +
-          this.ital +
-          ", 'slnt' " +
-          this.ital * -10 +
-          ";";
-      }
-      span.style = style;
-    };
-    return this;
-  };
-
-  var VFont = function (id) {
-    this.el = id;
-    this.scale = false;
-    this.flex = false;
-    this.alpha = true;
-    this.stroke = false;
-    this.width = true;
-    this.weight = true;
-    this.italic = true;
-    this.stretch = false;
-    var title,
-      chars = [];
-    let str = "Tim";
-
-    this.init = function () {
-      title = document.getElementById(this.el);
-      //str = title.innerText;
-      if (this.el === "bg-tim") {
-        title.innerHTML = "";
-        for (let i = 0; i < 64; i++) {
-          let _char = new Char(title, str, this.el);
-          chars.push(_char);
-        }
-      } else {
-        str = title.innerText;
-        title.innerHTML = "";
-        for (let i = 0; i < str.length; i++) {
-          let _char = new Char(title, str[i], this.el);
-          chars.push(_char);
-        }
-      }
-      this.set();
-      window.addEventListener("resize", this.setSize.bind(this));
-    };
-
-    this.set = function () {
-      title.className = "";
-      title.className += this.flex ? " flex" : "";
-      title.className += this.stroke ? " stroke" : "";
-      this.setSize();
-    };
-
-    this.setSize = function () {
-      var fontSize = window.innerWidth / str.length;
-      if (this.scale) {
-        var scaleY = (
-          window.innerHeight / title.getBoundingClientRect().height
-        ).toFixed(2);
-        var lineHeight = scaleY * 0.8;
-        title.style =
-          "font-size: " +
-          fontSize +
-          "px; transform: scale(1," +
-          scaleY +
-          "); line-height: " +
-          lineHeight +
-          "em;";
-      }
-    };
-
-    this.animate = function () {
-      mouse.x += (cursor.x - mouse.x) / 10;
-      mouse.y += (cursor.y - mouse.y) / 10;
-      requestAnimationFrame(this.animate.bind(this));
-      this.render();
-    };
-
-    this.render = function () {
-      if (this.el === "bg-tim") {
-        maxDist = title.getBoundingClientRect().width / 3.5;
-      } else {
-        maxDist = title.getBoundingClientRect().width / 2.5;
-      }
-      //maxDist = 400;
-      for (let i = 0; i < chars.length; i++) {
-        chars[i].update({
-          wght: this.weight,
-          wdth: this.width,
-          ital: this.italic,
-          alpha: this.alpha,
-        });
-      }
-    };
-    this.init();
-    this.animate();
-    return this;
-  };
+    let currentDist = myDist(cursor.x ,cursor.y, left + w,top + h);
+    letterData.dist = currentDist;
+    if(letterData.dist !== 0){
+      changeStyle();
+    }
+  }
 
   useEffect(() => {
-    new VFont("domaines-idtt");
-    new VFont("domaines-web");
-    new VFont("domaines-motion");
-  });
+    return () => {
+    }
+  }, [cursor])
+
+  return(
+    <span 
+      ref={currentLetter} 
+      style={{
+        display: letterData.value === " " ? "block" : "inline", 
+        fontVariationSettings: `"wght" ${letterData.weight}, "wdth" ${letterData.width}, "slnt" ${letterData.slant}`
+      }} 
+    >
+     {letterData.value}
+    </span>
+  )
+}
+
+const WordItem = ({cursor, letterData}) => {
+  return(
+    <>
+      {letterData.length > 1 && letterData.map( (el, i) => {
+          return <LetterItem cursor={cursor} key={i} letterData={el}/>
+      })}
+    </>
+  )
+}
+
+
+const IntroDescription = ({ content }) => {
+  const domaineContainer = useRef(null);
+  const [cursor, setCursor] = useState({x: window.innerWidth, y: window.innerHeight,});
+  const [windowW, setWindowW] = useState(window.innerWidth);
 
   const handleResize = () => {
     setWindowW(window.innerWidth);
   }
-  const handleMouseMove = (e) => {
-    cursor.x = e.clientX;
-    cursor.y = e.clientY;
+  const handleCursor = (e) => {
+    setCursor({
+      x: e.clientX,
+      y: e.clientY
+    });
   }
-  const handleMouseTouch = (e) =>{
-    let t = e.touches[0];
-    cursor.x = t.clientX;
-    cursor.y = t.clientY;
-  } 
+  const handleTCursor = (e) => {
+    var t = e.touches[0];
+    setCursor({
+      x: t.clientX,
+      y: t.clientY
+    });
+  }
+
+  let Allword = [];
+  const printLetter = (txt, id) => {
+    let word = [];
+    for (var i = 0; i < txt.length; i++) {
+      let sItem = {
+        value: txt[i],
+        posX: null,
+        posY: null,
+        width: null,
+        height: null,
+        opacity: 0.4,
+        width: 80,
+        weight: 250,
+        slant: 0,
+      }
+      word.push(sItem);
+    }
+    Allword.push({word, id: id})
+  };
+  
+  printLetter("Identité visuelle", "domaines-idtt");
+  printLetter("Site web", "domaines-web");
+  printLetter("Motion design", "domaines-motion");
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove );
-    window.addEventListener("touchmove", handleMouseTouch);
 
+    if(domaineContainer.current){
+      domaineContainer.current.addEventListener("mousemove", handleCursor);
+      domaineContainer.current.addEventListener("touchmove", handleTCursor, {passive: false,});
+    }
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove );
-      window.removeEventListener("touchmove", handleMouseTouch);
+      domaineContainer.current.removeEventListener("mousemove", handleCursor);
+      domaineContainer.current.removeEventListener("touchmove", handleTCursor, {passive: false,});
     }
-
   });
 
+
   return (
-    <section className="container-about">
+    <section className="container-about" ref={domaineContainer}>
       <article className="container-reseaux">
         <h1>{content.name}</h1>
         <div className="reseaux">
@@ -283,28 +210,28 @@ const IntroDescription = ({ content }) => {
         </div>
       </article>
       <article className="about-description">
-        {(() => {
-          if (windowW < 677) {
-            return (
-              <h2>
-                Je suis <strong>designer graphique</strong> &amp;{" "}
-                <strong>développeur freelance</strong>, Je crée des systèmes
-                graphiques innovants en alliant
+        {windowW < 677 ? (
+            <h2>
+              Je suis <strong>designer graphique</strong> &amp;{" "}
+              <strong>développeur freelance</strong>, Je crée des systèmes
+              graphiques innovants en alliant
+            </h2>
+          ) : (
+            <h2>
+              Je suis <strong>designer graphique</strong> &amp;{" "}
+              <strong>développeur freelance</strong>, <br />
+              Je crée des systèmes graphiques innovants en alliant
+            </h2>
+          )}
+        <div className="about-support" >
+          {Allword.length > 1 && Allword.map( (el, i) => {
+            return(
+              <h2 key={i} id={el.id}>
+                <WordItem cursor={cursor} letterData={el.word}/>
               </h2>
-            );
-          } else {
-            return (
-              <h2>
-                Je suis <strong>designer graphique</strong> &amp;{" "}
-                <strong>développeur freelance</strong>, <br />
-                Je crée des systèmes graphiques innovants en alliant
-              </h2>
-            );
-          }
-        })()}
-
-        <div className="about-support">
-          <h2 id="domaines-idtt">
+            )
+          })}
+          {/* <h2 id="domaines-idtt">
             Identité <br /> de marque
           </h2>
           <h2 id="domaines-web">
@@ -314,7 +241,7 @@ const IntroDescription = ({ content }) => {
           <h2 id="domaines-motion">
             Motion
             <br /> design
-          </h2>
+          </h2> */}
           <div className="svg-help">
             <p>{windowW < 800 ? "Tap": "Hover"}</p>
             <svg

@@ -146,6 +146,10 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
     }
   });
 
+  const contentObj = {
+    __html: currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>"),
+  };
+
   return (
     <>
       {!currentPage ? (
@@ -190,7 +194,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                   </motion.div>
                 </div>
               </div>
-              <div className="bottom-row" style={{height: windowW > 900 ? 800 : 400}}>
+              <div className="bottom-row" style={{height: windowW > 900 ? 700 : 400}}>
                 <div className="bottom">
                   <motion.div className="image-container-single">
                     <motion.div
@@ -202,7 +206,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                       animate={{
                         y: 0,
                         width: "100%",
-                        height: windowW > 900 ? 800 : 400,
+                        height: windowW > 900 ? windowW * 0.5 : 400,
                         transition: { delay: 0.2, ...transition },
                       }}
                       
@@ -219,7 +223,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                           initial={{ scale: 1.0, opacity: 0.5 }}
                           animate={{
                             transition: { delay: 0.2, ...transition },
-                            y: windowW > 900 ? -100 : 0,
+                            y: windowW > 900 ? -50 : 0,
                             opacity: 1,
                           }}
                         />
@@ -232,7 +236,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
             </div>
             <motion.div
               className="detailed-information"
-              style={{ display: "none", paddingTop: windowW > 900 ?  200 : 100}}
+              style={{ display: "none", paddingTop: windowW > 900 ?  windowW * 0.15 : 100}}
               transition={exitProjectContent}
             >
               <div className="container">
@@ -251,7 +255,10 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                       </a>
                     )}
                   </div>
-                  <p>{currentPage.description}</p>
+                  <div>
+                    <p dangerouslySetInnerHTML={contentObj}></p>
+
+                  </div>
                 </div>
                 <motion.div
                   className="container-media-project"
