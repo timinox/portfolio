@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Projet from "./pages/projet";
 import PageNotFound from "./pages/PageNotFound";
 
+import './font/Anybody[slnt,wdth,wght].ttf';
 import "./index.css";
 import "./App.css";
 

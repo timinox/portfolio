@@ -38,7 +38,7 @@ function About({ data }) {
           <h3>Expériences</h3>
         </div>
         <div className="content-cv">
-          <div className="box-cv">
+          <div className="box-cv hightlight-box">
             <h4>En recherche de stage</h4>
             <p>De 4 à 6 mois à partir de février 2021</p>
           </div>

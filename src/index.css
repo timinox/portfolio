@@ -78,7 +78,7 @@
 
 @font-face {
 font-family: "Anybody";
-src: url("/fonts/Anybody[slnt,wdth,wght].ttf")
+src: local("Anybody"), url("/fonts/Anybody[slnt,wdth,wght].ttf")
   format("truetype");
 font-display: block;
 font-style: normal italic;

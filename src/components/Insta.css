@@ -17,6 +17,7 @@
     cursor: pointer;
     border-width: 2px 0;
     background-color: var(--light-color-2);
+    overflow: hidden;
   }
   .container-img-insta{
     position: absolute;
@@ -124,5 +125,10 @@
     }
     60%{
         transform: translate(50px, 0) rotate(10deg);
+    }
+  }
+  @media (max-width: 800px) { 
+    .playground-insta a {
+      height: 250px;
     }
   }

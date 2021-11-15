@@ -3,7 +3,7 @@ import "./Insta.css";
 
 let width = 0;
 let height = 0;
-function RepeatDiv({ posX, posY, index }) {
+function RepeatDiv({ posX, posY, index, mobilInsta, parent }) {
   const elToDupli = useRef(null);
 
   useEffect(() => {
@@ -13,6 +13,11 @@ function RepeatDiv({ posX, posY, index }) {
     }
   }, []);
 
+  const generateClick = () => {
+    let rdX = Math.random() * window.innerWidth;
+    let rdY = Math.random() * parent.current.getBoundingClientRect().height;
+    return {x: rdX, y: rdY}
+  }
   return (
     <>
     {posX && posY && (
@@ -21,8 +26,8 @@ function RepeatDiv({ posX, posY, index }) {
         ref={elToDupli}
         key={index}
         style={{
-          left: posX - width + "px",
-          top: posY - height + "px",
+          left: !mobilInsta ? posX - width + "px" : generateClick().x + "px",
+          top: !mobilInsta ? posY - height + "px" : generateClick().y + "px",
         }}
         className="container-img-insta img1"
       >
@@ -32,11 +37,13 @@ function RepeatDiv({ posX, posY, index }) {
     </>
   );
 }
+
 let i = 1;
 let cDiv, newDiv;
 function Insta() {
   const [mousePos, setmousePos] = useState({ x: null, y: null });
   const [customDiv, setCustomDiv] = useState([]);
+  const [mobilInsta, setMobilInsta] = useState(false);
   const [stopMove, setStopMove] = useState(true);
   const containerInsta = useRef(null);
   const help = useRef(null);
@@ -62,7 +69,9 @@ function Insta() {
   function mouseStopped() {
     if (stopMove) {
       help.current.classList.add("help-on");
-      containerInsta.current.classList.add("hide");
+      if(window.innerWidth > 800){
+        containerInsta.current.classList.add("hide");
+      }
     } else {
       setStopMove(true);
     }
@@ -85,10 +94,21 @@ function Insta() {
     });
     cloneEl();
   }
+  
+  const runMobilAnim = () => {
+    let i = 0;
+    if (++i % 600 == 0){
+      removeImg();
+    }
+    requestAnimationFrame(runMobilAnim)
+  }
 
   useEffect(() => {
     removeImg();
     containerInsta.current.addEventListener("mousemove", handleMouseMove); 
+    if(window.innerWidth < 800){
+      runMobilAnim();
+    }
     return () => {
       containerInsta.current.removeEventListener("mousemove", handleMouseMove);
     }
@@ -106,18 +126,21 @@ function Insta() {
         rel="noopener noreferrer"
         // onMouseMove={MoveOnInsta}
       >
-        {customDiv.length > 0 &&
+        {customDiv.length > 0 && 
           customDiv.map((cdiv, i) => {
             return (
               <RepeatDiv
+                mobilInsta={window.innerWidth < 800 ? true : false} 
+                parent={containerInsta}
                 posX={cdiv.posX}
                 posY={cdiv.posY}
                 index={cdiv.copyNumber}
                 key={i}
               />
             );
-          })}
-        <div ref={help} id="indication-move" className="help-on">
+          })
+        }
+        <div ref={help} id="indication-move" className="help-on" style={{display: window.innerWidth < 800 ? "none" : "block"}}>
           <p>déplacer votre curseur</p>
           <svg
             className="cursor-help"
