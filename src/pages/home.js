@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 //component
 import Header from "../components/header";
@@ -15,6 +15,9 @@ const Home = ({
   darkTheme,
   pageDelay,
 }) => {
+  // useEffect(() => {
+  //   document.title = "Timothé Joubert | Portfolio";
+  // }, []);
   return (
     <>
       <Header

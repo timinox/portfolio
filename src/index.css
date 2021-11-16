@@ -5,93 +5,19 @@
 /* FONTS */
 /*********/
 *{
-  font-family: "Darker-Grotesque", "Poppins", serif;
-}
-/* poppins */
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Black.otf") format("opentype");
-  font-weight: 800;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-BlackItalic.otf") format("opentype");
-  font-weight: 800;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Bold.otf") format("opentype");
-  font-weight: 600;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-BoldItalic.otf") format("opentype");
-  font-weight: 600;
-  font-style: italic;
-}   
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Medium.otf") format("opentype");
-  font-weight: 500;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-MediumItalic.otf") format("otf");
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Regular.otf") format("opentype");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Italic.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Light.otf") format("opentype");
-  font-weight: 300;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-LightItalic.otf") format("opentype");
-  font-weight: 300;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Thin.otf") format("opentype");
-  font-weight: 200;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-ThinItalic.otf") format("opentype");
-  font-weight: 200;
-  font-style: italic;
+  font-family: "Anybody", "Darker-Grotesque", "Monument", sans-serif;
 }
 
-
 @font-face {
-font-family: "Anybody";
-src: local("Anybody"), url("/fonts/Anybody[slnt,wdth,wght].ttf")
-  format("truetype");
-font-display: block;
-font-style: normal italic;
-font-weight: 100 900;
-font-stretch: 10% 400%;
-font-style: oblique -10 0; 
+  font-family: "Anybody";
+  src: local("Anybody"), url("/fonts/Anybody[slnt,wdth,wght].ttf")
+    format("truetype");
+  font-display: block;
+  font-style: normal italic;
+  font-weight: 100 900;
+  font-stretch: 10% 400%;
+  font-style: oblique -10 0; 
 }
-@font-face {
-  font-family:'Compressa VF';
-src: url('/fonts/CompressaPRO-GX.woff2') format("woff2");
-font-style: normal;
-}
-
 @font-face {
   font-family:'Monument';
 src: url('/fonts/MonumentExtended-Black.ttf') format("truetype");

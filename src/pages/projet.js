@@ -89,7 +89,7 @@ const ParseWord = ({ name }) => {
 
 let indexPrevProject;
 let indexNextProject;
-const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
+const Projet = ({ data, imageDetails, currentPage, toggleTheme, location }) => {
   const { scrollYProgress } = useViewportScroll();
   const [windowW, setWindowW] = useState(window.innerWidth);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
@@ -145,6 +145,9 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
       window.removeEventListener("resize", handleResize);
     }
   });
+  useEffect(() => {
+    document.title = "Timothé Joubert | " + currentPage.name;
+  }, []);
 
   const contentObj = {
     __html: currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>"),

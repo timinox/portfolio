@@ -10,10 +10,6 @@ import Home from "./pages/home";
 import Projet from "./pages/projet";
 import PageNotFound from "./pages/PageNotFound";
 
-import './font/Anybody[slnt,wdth,wght].ttf';
-import "./index.css";
-import "./App.css";
-
 //data
 import TimData from "./TimData.js";
 
@@ -47,7 +43,6 @@ function App() {
   const [darkTheme, setDarkTheme] = useState();
   const [colorTheme, setcolorTheme] = useState();
   const [gradientDegrees, setgradientDegrees] = useState(135);
-
   const TransitionDelayAnim = 0.6;
 
   const toggleTheme = () => {
@@ -82,12 +77,15 @@ function App() {
     setData(TimData)
   }
 
-  const initFont = () =>{
-    document.fonts.ready.then( () =>  {
-      setFontsLoaded(true);
-      console.log("fonts loaded");
-    }).catch( () => console.log("error"));
-  }
+  function initFont() {
+    //'Anybody[slnt,wdth,wght].ttf'
+    document.fonts.ready
+    .then( () =>  {
+        setFontsLoaded(true);
+        console.log("fonts loaded");
+      })
+      .catch( () => console.log("error loading font"));
+    }
 
   const checkImgLoad = () => {
     if(!imgLoaded){ 
@@ -99,6 +97,7 @@ function App() {
     }
   };
 
+
   useEffect(() => {
     //init data
     initData();
@@ -106,21 +105,26 @@ function App() {
     //init color theme
     getColorTheme();
 
-    //init fonts
-    initFont();
-
     if(!imgLoaded){
       nodeImgs.forEach( (img) => {
         img.addEventListener("load", checkImgLoad, true);
       });
     }
 
+    //init fonts
+    window.addEventListener("load", initFont);
+
     console.log(data, fontsLoaded, imgLoaded);
+    
     if(data.length > 1 && fontsLoaded && imgLoaded){
       setIsloading(false);
-      console.log("toggle loading", isLoading)
+      console.log("toggle loading", isLoading);
+      document.title = "Timothé Joubert | Portfolio";
+    }else{
+      document.title = "Timothé Joubert | Loading";
     }
   }, [data, fontsLoaded, imgLoaded])
+
 
   return ( <div
       className={
@@ -130,8 +134,6 @@ function App() {
       <div
         className="grain-effect"
         style={{
-          // backgroundImage: "url(" + window.location.origin + "/grain.png)",
-          // "--angleGradient": gradientDegrees + "deg",
           "--angleGradient": gradientDegrees + "deg",
         }}
       ></div>
@@ -184,7 +186,7 @@ function App() {
                   ></Route>
 
                   <Route path="*">
-                    <PageNotFound toggleTheme={toggleTheme} />
+                    <PageNotFound toggleTheme={toggleTheme}/>
                   </Route>
                 </Switch>
               </AnimatePresence>

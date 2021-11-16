@@ -9,10 +9,10 @@
 	margin-right: 20px;
 }
 .container-loader .loader-txt span {
-	font-family: "Darker-Grotesque", "Monument", sans-serif;
+	font-family: "Darker-Grotesque", "Roboto", "Monument", sans-serif;
 	font-size: 4em;
 	font-weight: 400;
-	line-height: 0;
+	/* line-height: 0; */
 }
 .loader-spinner{
 	display: block;

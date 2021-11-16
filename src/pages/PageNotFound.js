@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
@@ -13,6 +13,9 @@ const transitionPage = {
 
 const PageNotFound = ({ toggleTheme }) => {
   let location = useLocation().pathname;
+  useEffect(() => {
+    document.title = "Timothé Joubert | Error";
+  }, []);
   return (
     <>
       <Link to={`/`} className="header-project">

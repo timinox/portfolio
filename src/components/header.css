@@ -30,7 +30,6 @@
   }
   #bg-tim {
     position: absolute;
-    /* font-family:'Compressa VF'; */
     display: grid;
     grid-template-columns: repeat(8, auto);
     /* grid-template-rows: repeat(auto-fill, auto); */
@@ -59,7 +58,7 @@
     cursor: default;
   }
   #bg-tim span {
-  font-family:'Anybody';
+  font-family:'Anybody', "Darker-Grotesque", "Poppins", sans-serif;;
   display: inline-block;
   user-select: none;
   }
