@@ -130,7 +130,8 @@ function App() {
       <div
         className="grain-effect"
         style={{
-          backgroundImage: "url(" + window.location.origin + "/grain.png)",
+          // backgroundImage: "url(" + window.location.origin + "/grain.png)",
+          // "--angleGradient": gradientDegrees + "deg",
           "--angleGradient": gradientDegrees + "deg",
         }}
       ></div>

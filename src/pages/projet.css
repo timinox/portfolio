@@ -58,6 +58,7 @@
 	font-family: "Anybody", sans-serif;
 	font-variation-settings: 'wght' 350, 'wdth' 110; 
 	font-size: 2.5em;
+	/* text-transform: uppercase; */
 }
 .title-word{
 	display: inline-block;

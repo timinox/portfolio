@@ -3,8 +3,8 @@
   /***********/
   .container-contact{
     position: relative;
-	display: flex;
-	align-items: flex-start;
+	  display: flex;
+	  align-items: flex-start;
     height: 250vh;
     max-width: 800px;
     margin: 500px auto 0px auto;
@@ -57,7 +57,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 0 20px;
   }

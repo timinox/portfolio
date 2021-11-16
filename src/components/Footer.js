@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <p>
-        Un site crée from scratch avec <strong>Html | CSS | React</strong>
+        Un site <strong>crée from scratch</strong> avec <strong>html | css | réact</strong>
       </p>
       <p>
         par <strong>Timothé Joubert</strong>

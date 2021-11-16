@@ -239,7 +239,7 @@ li{
 
 .grain-effect {
   position: fixed;
-  z-index: 10;
+  z-index: 0;
   top: -40px;
   left: -40px;
   width: 130vw;
@@ -247,33 +247,33 @@ li{
   /* background: linear-gradient(var(--angleGradient), #000000, transparent), url(https://grainy-gradients.vercel.app/noise.svg); */
   /* filter: contrast(90%) brightness(500%); */
   /* mix-blend-mode: multiply; */
-  /* animation: grain 0.9s steps(1, end) infinite; */
+  background: linear-gradient(var(--angleGradient), #000000, transparent), url('./grain.svg');
+  filter: contrast(90%) brightness(500%);
+
   pointer-events: none;
+  mix-blend-mode: multiply;
+  /* opacity: 0.3; */
+  opacity: 0.7;
+  animation: grain 1s steps(1) infinite;
 }
 .light_mode .grain-effect{
-  /* mix-blend-mode: darken; */
-  /* filter: contrast(110%) brightness(300%); */
-  /* background: linear-gradient( var(--angleGradient), #00000094, white), url(https://grainy-gradients.vercel.app/noise.svg); */
-  opacity: 0.1;
-}
-.grain-effect{
-  animation: grain2 1s steps(1) infinite;
-  mix-blend-mode: multiply;
+  mix-blend-mode: color-burn;
+  filter: contrast(84%) brightness(250%);
+  background: linear-gradient( var(--angleGradient), #000000d6, #fff0), url('./grain.svg');
   opacity: 0.3;
-  /* background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/paper-pattern.png"); */
 }
-.grain-effect::after{
+/* .grain-effect::after{
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(var(--angleGradient), #4218d899, #ffffff);
+  background: linear-gradient(var(--angleGradient), #000000, transparent), url('./grain.png');
   filter: contrast(300%) brightness(200%);
   mix-blend-mode: multiply;
-
-}
+  opacity: 0.8;
+} */
 @keyframes grain{ 
 0%, 100%{ 
   transform: translate(0, 0);
