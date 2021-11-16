@@ -19,11 +19,11 @@ function About({ data }) {
             <p>Faculté Lyon 2, Lyon</p>
           </div>
           <div className="box-cv">
-            <h4>DSAA</h4>
+            <h4>DSAA Graphisme</h4>
             <p>Lycée La Martinière Diderot, Lyon</p>
           </div>
           <div className="box-cv">
-            <h4>DEC</h4>
+            <h4>DEC Développement</h4>
             <p>Cégep de Matane, Québec</p>
           </div>
           <div className="box-cv">

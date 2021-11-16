@@ -92,7 +92,7 @@ let indexNextProject;
 const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
   const { scrollYProgress } = useViewportScroll();
   const [windowW, setWindowW] = useState(window.innerWidth);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
   const [canScroll, setCanScroll] = useState(false);
   const [transitionPage, setTransipage] = useState(null);
 
@@ -223,7 +223,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme }) => {
                           initial={{ scale: 1.0, opacity: 0.5 }}
                           animate={{
                             transition: { delay: 0.2, ...transition },
-                            y: windowW > 900 ? -50 : 0,
+                            y: windowW > 900 ? -100 : 0,
                             opacity: 1,
                           }}
                         />
