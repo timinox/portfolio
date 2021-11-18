@@ -94,7 +94,11 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
 
   let spanArray = [];
   const printSpan = () => {
-    for (var i = 0; i < 64; i++) {
+    let nb = 64;
+    if(window.innerWidth < 600){
+      nb = 40;
+    }
+    for (var i = 0; i < nb; i++) {
       let sItem = {
         index: null,
         posX: null,
@@ -114,12 +118,6 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
   printSpan();
 
   useEffect(() => {
-    //let url = window.location.href.split("/");
-    //let target = url[url.length - 1].toLowerCase();
-    //let element = document.getElementById(target);
-    //element && element.scrollIntoView({ behavior: "smooth", block: "start" });
-    //new VFont("bg-tim");
-
     if(headerContainer.current){
       headerContainer.current.addEventListener("mousemove", handleMouseMove);
       headerContainer.current.addEventListener("touchmove", handleTouchMove, {passive: false,});
@@ -132,16 +130,6 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
 
   return (
     <header ref={headerContainer}>
-      {/* <motion.div
-        id="bg-tim"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{
-          transition: { duration: 0.5, delay: pageDelay + 0.3 },
-          scale: 1,
-          opacity: 1,
-        }}
-      >
-      </motion.div> */}
       <motion.div id="bg-tim"
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -158,7 +146,6 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
           })
         )}
       </motion.div>
-      {/* <ContainerItems word="TIM" cursor={cursor} /> */}
 
       <div className="container-header">
         <motion.h1

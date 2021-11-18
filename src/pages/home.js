@@ -15,9 +15,9 @@ const Home = ({
   darkTheme,
   pageDelay,
 }) => {
-  // useEffect(() => {
-  //   document.title = "Timothé Joubert | Portfolio";
-  // }, []);
+  useEffect(() => {
+    document.title = "Timothé Joubert | Portfolio";
+  }, []);
   return (
     <>
       <Header

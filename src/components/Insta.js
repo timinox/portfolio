@@ -3,7 +3,37 @@ import "./Insta.css";
 
 let width = 0;
 let height = 0;
-function RepeatDiv({ posX, posY, index, mobilInsta, parent }) {
+
+
+function ContainerInstaMobil({parent}) {
+  // const generateClick = () => {
+  //   let rdX = Math.random() * window.innerWidth;
+  //   let rdY = Math.random() * parent.current.getBoundingClientRect().height;
+  //   return {x: rdX, y: rdY}
+  // }
+
+  const centeredTxt = () => {
+      let rdX = window.innerWidth/2;
+      let rdY = parent.current.getBoundingClientRect().height/2;
+      return {x: rdX, y: rdY}
+  }
+
+  return (
+    <div
+    className={`container-img-insta`}
+    className="container-img-insta insta-mobil"
+    style={{
+      left: centeredTxt().x + "px",
+      top: centeredTxt().y + "px",
+      transform: "translate(-50%, -50%)"
+    }}
+  >
+    <h4>Instagram</h4>
+  </div>
+  )
+}
+
+function ContainerInstaDesktop({ posX, posY, index }) {
   const elToDupli = useRef(null);
 
   useEffect(() => {
@@ -13,26 +43,32 @@ function RepeatDiv({ posX, posY, index, mobilInsta, parent }) {
     }
   }, []);
 
-  const generateClick = () => {
-    let rdX = Math.random() * window.innerWidth;
-    let rdY = Math.random() * parent.current.getBoundingClientRect().height;
-    return {x: rdX, y: rdY}
-  }
+  return (
+    <div
+    className={`container-img-insta img-${index}`}
+    ref={elToDupli}
+    key={index}
+    style={{
+      left: posX - width + "px",
+      top: posY - height + "px",
+    }}
+    className="container-img-insta img1"
+  >
+    <h4>Click</h4>
+  </div>
+  )
+}
+
+function RepeatDiv({ posX, posY, index, mobilInsta, parent }) {
+
   return (
     <>
     {posX && posY && (
-      <div
-        className={`container-img-insta img-${index}`}
-        ref={elToDupli}
-        key={index}
-        style={{
-          left: !mobilInsta ? posX - width + "px" : generateClick().x + "px",
-          top: !mobilInsta ? posY - height + "px" : generateClick().y + "px",
-        }}
-        className="container-img-insta img1"
-      >
-        <h4>Click</h4>
-      </div>
+        <ContainerInstaDesktop 
+          posX={posX}
+          posY={posY}
+          index={index}
+        />  
     )}
     </>
   );
@@ -43,7 +79,7 @@ let cDiv, newDiv;
 function Insta() {
   const [mousePos, setmousePos] = useState({ x: null, y: null });
   const [customDiv, setCustomDiv] = useState([]);
-  const [mobilInsta, setMobilInsta] = useState(false);
+  const [mobilInsta, setMobilInsta] = useState();
   const [stopMove, setStopMove] = useState(true);
   const containerInsta = useRef(null);
   const help = useRef(null);
@@ -103,12 +139,33 @@ function Insta() {
     requestAnimationFrame(runMobilAnim)
   }
 
-  useEffect(() => {
-    removeImg();
-    containerInsta.current.addEventListener("mousemove", handleMouseMove); 
+  const handleWindowResize = () => {
     if(window.innerWidth < 800){
-      runMobilAnim();
+      setMobilInsta(true);
+      containerInsta.current.classList.remove("hide");
+    }else{
+      setMobilInsta(false);
     }
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+    return () =>{
+      window.removeEventListener('resize', handleWindowResize);
+    }
+  })
+  useEffect(() => {
+    handleWindowResize();
+  }, []);
+
+  useEffect(() => {
+    if(!mobilInsta){
+      removeImg();
+      containerInsta.current.addEventListener("mousemove", handleMouseMove); 
+      if(window.innerWidth < 800){
+        runMobilAnim();
+      }
+    }
+
     return () => {
       containerInsta.current.removeEventListener("mousemove", handleMouseMove);
     }
@@ -126,19 +183,25 @@ function Insta() {
         rel="noopener noreferrer"
         // onMouseMove={MoveOnInsta}
       >
-        {customDiv.length > 0 && 
-          customDiv.map((cdiv, i) => {
-            return (
-              <RepeatDiv
-                mobilInsta={window.innerWidth < 800 ? true : false} 
-                parent={containerInsta}
-                posX={cdiv.posX}
-                posY={cdiv.posY}
-                index={cdiv.copyNumber}
-                key={i}
-              />
-            );
-          })
+        {mobilInsta ? 
+        <>
+          <ContainerInstaMobil parent={containerInsta}/> 
+        </>
+        :
+        <>{customDiv.length > 0 && 
+            customDiv.map((cdiv, i) => {
+              return (
+                <RepeatDiv
+                  mobilInsta={mobilInsta} 
+                  parent={containerInsta}
+                  posX={cdiv.posX}
+                  posY={cdiv.posY}
+                  index={cdiv.copyNumber}
+                  key={i}
+                />
+              );
+            })
+          }</>
         }
         <div ref={help} id="indication-move" className="help-on" style={{display: window.innerWidth < 800 ? "none" : "block"}}>
           <p>déplacer votre curseur</p>

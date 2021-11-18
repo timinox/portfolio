@@ -163,6 +163,9 @@
 
 /* responsive */ 
 @media (max-width: 600px) { 
+  #bg-tim{
+    grid-template-columns: repeat(5, auto);
+  }
   header h1{
     font-size: 9em;
     line-height: 0.9em;

@@ -23,6 +23,7 @@
     font-weight: 400;
   }
   footer p strong{
+    font-family: "Darker-Grotesque","Anybody", "Monument", sans-serif;
     color: var(--light-color-8);
     font-weight: 600;
   }

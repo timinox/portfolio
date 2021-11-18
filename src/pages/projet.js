@@ -86,10 +86,37 @@ const ParseWord = ({ name }) => {
     </>
   );
 };
+const VideoParams = ({projectName, mediaName}) => { 
+  if(window.innerWidth < 800){
+    return(    
+    <video controls >
+      <source
+        src={
+          window.location.origin +
+          `/img/${projectName}-${mediaName}`
+        }
+        type="video/mp4"
+      />
+    </video>
+    )
+  }else{
+    return(    
+      <video autoPlay loop muted >
+        <source
+          src={
+            window.location.origin +
+            `/img/${projectName}-${mediaName}`
+          }
+          type="video/mp4"
+        />
+      </video>
+      )
+  } 
+}
 
 let indexPrevProject;
 let indexNextProject;
-const Projet = ({ data, imageDetails, currentPage, toggleTheme, location }) => {
+const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
   const { scrollYProgress } = useViewportScroll();
   const [windowW, setWindowW] = useState(window.innerWidth);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
@@ -137,7 +164,6 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme, location }) => {
     console.log("transi home");
     exitProjet = { y: window.innerHeight };
   }
-
   useEffect(() => {
     handleScroll();
     window.addEventListener("resize", handleResize);
@@ -146,6 +172,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme, location }) => {
     }
   });
   useEffect(() => {
+    setgradientDegrees(135);
     document.title = "Timothé Joubert | " + currentPage.name;
   }, []);
 
@@ -283,15 +310,7 @@ const Projet = ({ data, imageDetails, currentPage, toggleTheme, location }) => {
                     } else {
                       return (
                         <div className="container-img-project" key={index}>
-                          <video muted autoPlay loop>
-                            <source
-                              src={
-                                window.location.origin +
-                                `/img/${currentPage.slug}-${img}`
-                              }
-                              type="video/mp4"
-                            />
-                          </video>
+                          <VideoParams projectName={currentPage.slug} mediaName={img}/>
                         </div>
                       );
                     }

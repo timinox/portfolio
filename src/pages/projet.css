@@ -158,6 +158,7 @@
 	transform-origin: bottom left;
 }
 .detailed-information p {
+	font-family: "Darker-Grotesque", "Roboto", "Monument", sans-serif;
 	font-size: 1.3em;
 	font-weight: 400;
 }

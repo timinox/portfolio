@@ -97,7 +97,6 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     //init data
     initData();
@@ -181,7 +180,7 @@ function App() {
                     exact={true}
                     path="/projet/:slug"
                     render={() => (
-                      <Projet data={data} toggleTheme={toggleTheme} />
+                      <Projet data={data} toggleTheme={toggleTheme} setgradientDegrees={setgradientDegrees} />
                     )}
                   ></Route>
 
