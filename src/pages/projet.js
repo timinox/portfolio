@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
 import "./projet.css";
 
@@ -123,7 +123,7 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
   const [canScroll, setCanScroll] = useState(false);
   const [transitionPage, setTransipage] = useState(null);
 
-  const { slug } = useParams();
+  const slug = useRouteMatch(`/projet/:slug`).params.slug;
   let indexProject;
 
   data[1].map(function (projet, index) {
