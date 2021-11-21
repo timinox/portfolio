@@ -13,6 +13,12 @@ import PageNotFound from "./pages/PageNotFound";
 //data
 import TimData from "./TimData.js";
 
+//analytics
+import RouteAnalytics from "./pages/RouteAnalytics";
+import ReactGA from 'react-ga';
+const TRACKING_ID = "G-CP9BK30SFK"; 
+ReactGA.initialize(TRACKING_ID);
+
 //global var
 let preloaded = 0;
 let nodeImgs = [];
@@ -62,7 +68,7 @@ function App() {
       window.localStorage.setItem("website_theme", "dark");
       setDarkTheme(true);
     }
-    console.log("color theme loaded", window.localStorage.getItem("website_theme"));
+    //console.log("color theme loaded", window.localStorage.getItem("website_theme"));
   }
   window.onscroll = () => {
     let prc = Math.floor(
@@ -82,7 +88,7 @@ function App() {
     document.fonts.ready
     .then( () =>  {
         setFontsLoaded(true);
-        console.log("fonts loaded");
+        //console.log("fonts loaded");
       })
       .catch( () => console.log("error loading font"));
     }
@@ -113,11 +119,11 @@ function App() {
     //init fonts
     window.addEventListener("load", initFont);
 
-    console.log(data, fontsLoaded, imgLoaded);
+    //console.log(data, fontsLoaded, imgLoaded);
     
     if(data.length > 1 && fontsLoaded && imgLoaded){
       setIsloading(false);
-      console.log("toggle loading", isLoading);
+      //console.log("toggle loading", isLoading);
       document.title = "Timothé Joubert | Portfolio";
     }else{
       document.title = "Timothé Joubert | Loading";
@@ -159,6 +165,7 @@ function App() {
 
       {!isLoading && (
         <Router>
+          <RouteAnalytics/>
           <Route
             render={({ location }) => (
               <AnimatePresence initial={true}>

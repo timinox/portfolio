@@ -134,6 +134,29 @@
   .container-reference .box-cv:hover{
     padding: 10px;
   }
+
+
+  @media (max-width: 800px) { 
+    .container-contact{
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-top: 150px;
+      margin-bottom: calc(50vh - 148px);
+    }
+    .container-img-contact{
+      width: 350px;
+      top: 30px;
+      transform: inherit;
+      overflow-x: hidden;
+    }
+    .texte-contact, .container-img-contact{
+      height: 50%;
+    }
+    .texte-contact > *{
+      top: calc(50vh + var(--data-y) * 25px);
+    }
+  }
+
   @media (max-width: 700px) { 
     section.container-cv{
       justify-content: center;
@@ -156,14 +179,5 @@
     .container-experience{
       margin: 100px 0;
     }
-    .container-contact{
-      flex-direction: column;
-      align-items: center;
-    }
-    .texte-contact, .container-img-contact{
-      height: 50%;
-    }
-    .container-img-contact{
-      transform: inherit;
-    }
+
   }

@@ -266,7 +266,7 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
             </div>
             <motion.div
               className="detailed-information"
-              style={{ display: "none", paddingTop: windowW > 900 ?  windowW * 0.15 : 100}}
+              style={{ display: "none", paddingTop: windowW > 900 ?  windowW * 0.2 : 100}}
               transition={exitProjectContent}
             >
               <div className="container">

@@ -123,7 +123,7 @@ src: url('/fonts/clash-grotesk.woff2') format("woff2");
 @media (max-width: 800px) { 
   .container-pages{
     width: 100%;
-    overflow-x: hidden;
+
   }
 }
 /***********/

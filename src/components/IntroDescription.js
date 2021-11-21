@@ -40,7 +40,7 @@ const LetterItem = ({cursor, letterData}) => {
     <span 
       ref={currentLetter} 
       style={{
-        display: letterData.value === " " ? "block" : "inline", 
+        display: letterData.value === " " && window.innerWidth > 600  ? "block" : "inline", 
         fontVariationSettings: `"wght" ${letterData.weight}, "wdth" ${letterData.width}, "slnt" ${letterData.slant}`
       }} 
     >

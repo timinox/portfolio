@@ -3,6 +3,8 @@
   /***********/
   .container-projects{
     padding: 100px 0 300px;
+    width: 100vw;
+    overflow-x: hidden;
   }
   .title-projet{
     margin-bottom: 100px;
@@ -112,8 +114,9 @@
   .project-img{
     display: flex;
     justify-content: center;
-    transition: transform 400ms ;
-    /* will-change: transform; */
+    transition-timing-function: cubic-bezier(0.000, 0.570, 0.630, 0.970);
+    transition: transform 500ms ;
+    will-change: transform;
   }
   .container-img{
     height: 300px;

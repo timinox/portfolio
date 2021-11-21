@@ -166,10 +166,14 @@
 	margin: 200px 0;
 }
 .container-img-project{
-	padding: 20px 0;
+	display: flex;
+	/* padding: 20px 0; */
+	margin-top: 40px;
+	box-shadow: 2px 2px 7px 0px var(--light-color-2);
 }
 .container-img-project,  .container-img-project img ,  .container-img-project video{
 	width: 100%;
+	border-radius: 3px;
 }
 
 

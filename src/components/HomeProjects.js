@@ -103,6 +103,7 @@ const ParseLetter = ({ word }) => {
 function ContentMarquee({ projet, index, image, containerInfo }) {
   const { scrollYProgress } = useViewportScroll();
   const [translateY, setTranslateY] = useState(0);
+
   if (index % 2) {
     direction = window.innerHeight * 1.2; // window.innerWidth;
   } else {
