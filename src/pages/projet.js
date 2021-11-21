@@ -164,6 +164,7 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
     console.log("transi home");
     exitProjet = { y: window.innerHeight };
   }
+
   useEffect(() => {
     handleScroll();
     window.addEventListener("resize", handleResize);
@@ -171,18 +172,21 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
       window.removeEventListener("resize", handleResize);
     }
   });
+
   useEffect(() => {
     setgradientDegrees(135);
-    document.title = "Timothé Joubert | " + currentPage.name;
+    if(currentPage){
+      document.title = "Timothé Joubert | " + currentPage.name;
+    }
   }, []);
 
-  const contentObj = {
-    __html: currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>"),
-  };
+  const contentObj = () => {
+    return currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  }
 
   return (
     <>
-      {!currentPage ? (
+      {!currentPage && slug ? (
         <PageNotFound toggleTheme={toggleTheme} />
       ) : (
         <>
@@ -286,7 +290,7 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
                     )}
                   </div>
                   <div>
-                    <p dangerouslySetInnerHTML={contentObj}></p>
+                    <p>{contentObj()}</p>
 
                   </div>
                 </div>
