@@ -122,7 +122,7 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
   const [canScroll, setCanScroll] = useState(false);
   const [transitionPage, setTransipage] = useState(null);
 
-  const slug = useRouteMatch(`/projet/:slug`).params.slug;
+  let slug = useRouteMatch(`/projet/:slug`).params.slug;
   let indexProject;
 
   data[1].map(function (projet, index) {
@@ -131,9 +131,11 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
       indexProject = index;
     }
     if(index == data[1].length - 1){
-      //console.log("not slug project find in slug url")
+      console.log("not slug project find in slug url");
+      slug = false;
     }
   });
+
 
   if (indexProject === 0) {
     indexPrevProject = data[1].length - 1;

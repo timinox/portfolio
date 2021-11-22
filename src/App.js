@@ -130,7 +130,10 @@ function App() {
     }
   }, [data, fontsLoaded, imgLoaded])
 
+  useEffect(() => {
+    document.querySelector("body").classList.remove("no-scroll");
 
+  }, []);
   return ( <div
       className={
         darkTheme ? "container-pages light_mode" : "container-pages dark_mode"
