@@ -179,5 +179,13 @@
     .container-experience{
       margin: 100px 0;
     }
-
+    
+  }
+  @media (max-width: 450px) { 
+    .container-img-contact{
+      width: 300px;
+      top: -10px;
+      transform: inherit;
+      overflow-x: hidden;
+    }
   }

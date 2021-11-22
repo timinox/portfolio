@@ -114,7 +114,7 @@ const VideoParams = ({projectName, mediaName}) => {
   } 
 }
 
-let indexPrevProject, indexNextProject, currentPage, notfound;
+let indexPrevProject, indexNextProject, currentPage;
 const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
   const { scrollYProgress } = useViewportScroll();
   const [windowW, setWindowW] = useState(window.innerWidth);
@@ -125,12 +125,12 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
   let slug = useRouteMatch(`/projet/:slug`).params.slug;
   let indexProject;
 
-  data[1].map(function (projet, index) {
+  data[1].map( (projet, index) =>{
     if (projet.slug === slug) {
       currentPage = projet;
       indexProject = index;
     }
-    if(index == data[1].length - 1){
+    if(index === data[1].length - 1){
       console.log("not slug project find in slug url");
       slug = false;
     }
@@ -186,7 +186,7 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
     if(currentPage){
       document.title = "Timothé Joubert | " + currentPage.name;
     }
-  }, []);
+  }, [setgradientDegrees]);
 
   return (
     <>

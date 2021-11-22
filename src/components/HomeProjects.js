@@ -110,18 +110,18 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
     direction = -window.innerHeight * 1.2;
   }
 
-  let move = useTransform(
-    scrollYProgress,
-    [
-      (containerInfo.top - window.innerHeight) / document.body.offsetHeight ,
-      (containerInfo.end + window.innerHeight * 2) / document.body.offsetHeight,
-    ],
-    [0, direction]
-  );
+  const move = useTransform(
+      scrollYProgress,
+      [
+        (containerInfo.top - window.innerHeight) / document.body.offsetHeight ,
+        (containerInfo.end + window.innerHeight * 2) / document.body.offsetHeight,
+      ],
+      [0, direction]
+    );
 
   useEffect(() => {
     setTranslateY(move);
-  });
+  }, []);
 
   return (
     <motion.article

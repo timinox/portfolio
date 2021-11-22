@@ -90,7 +90,6 @@ const IntroDescription = ({ content }) => {
         value: txt[i],
         posX: null,
         posY: null,
-        width: null,
         height: null,
         opacity: 0.4,
         width: 80,
@@ -109,14 +108,15 @@ const IntroDescription = ({ content }) => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
 
+    var domaine = domaineContainer.current;
     if(domaineContainer.current){
-      domaineContainer.current.addEventListener("mousemove", handleCursor);
-      domaineContainer.current.addEventListener("touchmove", handleTCursor, {passive: false,});
+      domaine.addEventListener("mousemove", handleCursor);
+      domaine.addEventListener("touchmove", handleTCursor, {passive: false,});
     }
     return () => {
       window.removeEventListener("resize", handleResize);
-      domaineContainer.current.removeEventListener("mousemove", handleCursor);
-      domaineContainer.current.removeEventListener("touchmove", handleTCursor, {passive: false,});
+      domaine.removeEventListener("mousemove", handleCursor);
+      domaine.removeEventListener("touchmove", handleTCursor, {passive: false,});
     }
   });
 

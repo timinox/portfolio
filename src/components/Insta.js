@@ -5,35 +5,15 @@ let width = 0;
 let height = 0;
 
 
-function ContainerInstaMobil({parent}) {
-  // const generateClick = () => {
-  //   let rdX = Math.random() * window.innerWidth;
-  //   let rdY = Math.random() * parent.current.getBoundingClientRect().height;
-  //   return {x: rdX, y: rdY}
-  // }
-
-  const centeredTxt = () => {
-      let rdX = window.innerWidth/2;
-      let rdY = parent.current.getBoundingClientRect().height/2;
-      return {x: rdX, y: rdY}
-  }
-
+function ContainerInstaMobil() {
   return (
-    <div
-    className={`container-img-insta`}
-    className="container-img-insta insta-mobil"
-    style={{
-      left: centeredTxt().x + "px",
-      top: centeredTxt().y + "px",
-      transform: "translate(-50%, -50%)"
-    }}
-  >
-    <h4>Instagram</h4>
-  </div>
+    <div  className="container-img-insta insta-mobil" >
+      <h4>Instagram</h4>
+    </div>
   )
 }
 
-function ContainerInstaDesktop({ posX, posY, index }) {
+function ContainerInstaDesktop({ posX, posY }) {
   const elToDupli = useRef(null);
 
   useEffect(() => {
@@ -45,29 +25,27 @@ function ContainerInstaDesktop({ posX, posY, index }) {
 
   return (
     <div
-    className={`container-img-insta img-${index}`}
-    ref={elToDupli}
-    key={index}
-    style={{
-      left: posX - width + "px",
-      top: posY - height + "px",
-    }}
-    className="container-img-insta img1"
-  >
+      className="container-img-insta"
+      ref={elToDupli}
+      style={{
+        left: posX - width + "px",
+        top: posY - height + "px",
+      }}
+    >
     <h4>Click</h4>
   </div>
-  )
+  );
 }
 
-function RepeatDiv({ posX, posY, index, mobilInsta, parent }) {
+function RepeatDiv({ posX, posY, index, mobilInsta }) {
 
   return (
     <>
     {posX && posY && (
         <ContainerInstaDesktop 
+          mobilInsta={mobilInsta}
           posX={posX}
           posY={posY}
-          index={index}
         />  
     )}
     </>
@@ -89,8 +67,8 @@ function Insta() {
     cDiv = customDiv;
     newDiv = {
       copyNumber: i++,
-      posX: Math.floor(mousePos.x),
-      posY: Math.floor(mousePos.y),
+      posX: mousePos.x,
+      posY: mousePos.y,
     };
     cDiv.push(newDiv);
     setCustomDiv(cDiv);
@@ -99,12 +77,14 @@ function Insta() {
     help.current.classList.remove("help-on");
 
     containerInsta.current.classList.remove("hide");
-    timerEnd = setTimeout(mouseStopped, 2000);
+    timerEnd = setTimeout(mouseStopped, 3000);
   };
 
   function mouseStopped() {
     if (stopMove) {
-      help.current.classList.add("help-on");
+      if(cDiv.length < 2){
+        help.current.classList.add("help-on");
+      }
       if(window.innerWidth > 800){
         containerInsta.current.classList.add("hide");
       }
@@ -119,7 +99,7 @@ function Insta() {
         cDiv.splice(0, 1);
         setCustomDiv(cDiv);
       }
-    }, 500);
+    }, 100);
   }
 
   const handleMouseMove = (e) => {
@@ -132,44 +112,39 @@ function Insta() {
   }
   
   const runMobilAnim = () => {
-    let i = 0;
-    if (++i % 600 == 0){
-      removeImg();
-    }
-    requestAnimationFrame(runMobilAnim)
+    removeImg();
   }
 
   const handleWindowResize = () => {
     if(window.innerWidth < 800){
       setMobilInsta(true);
-      containerInsta.current.classList.remove("hide");
+      let insta = containerInsta.current;
+      insta.classList.remove("hide");
     }else{
       setMobilInsta(false);
     }
   }
+
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
     return () =>{
       window.removeEventListener('resize', handleWindowResize);
     }
-  })
-  useEffect(() => {
-    handleWindowResize();
-  }, []);
+  });
 
   useEffect(() => {
     if(!mobilInsta){
       removeImg();
+      
       containerInsta.current.addEventListener("mousemove", handleMouseMove); 
       if(window.innerWidth < 800){
         runMobilAnim();
       }
     }
-
     return () => {
       containerInsta.current.removeEventListener("mousemove", handleMouseMove);
     }
-  }, [removeImg]);
+  }, [mouseStopped]);
 
   return (
     <section className="playground-insta">
@@ -185,23 +160,23 @@ function Insta() {
       >
         {mobilInsta ? 
         <>
-          <ContainerInstaMobil parent={containerInsta}/> 
+          <ContainerInstaMobil parent={containerInsta} mobilInsta={mobilInsta}/> 
         </>
         :
-        <>{customDiv.length > 0 && 
+        <>
+        {customDiv.length > 0 && 
             customDiv.map((cdiv, i) => {
               return (
                 <RepeatDiv
                   mobilInsta={mobilInsta} 
-                  parent={containerInsta}
-                  posX={cdiv.posX}
-                  posY={cdiv.posY}
-                  index={cdiv.copyNumber}
+                  posX={cdiv.posX ? cdiv.posX : null}
+                  posY={cdiv.posY ? cdiv.posY : null}
                   key={i}
                 />
               );
             })
-          }</>
+          }
+          </>
         }
         <div ref={help} id="indication-move" className="help-on" style={{display: window.innerWidth < 800 ? "none" : "block"}}>
           <p>déplacer votre curseur</p>

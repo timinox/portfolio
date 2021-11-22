@@ -103,7 +103,6 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
         index: null,
         posX: null,
         posY: null,
-        width: null,
         height: null,
         opacity: 0.06,
         width: 80,
@@ -119,12 +118,13 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
 
   useEffect(() => {
     if(headerContainer.current){
-      headerContainer.current.addEventListener("mousemove", handleMouseMove);
-      headerContainer.current.addEventListener("touchmove", handleTouchMove, {passive: false,});
+      var header = headerContainer.current;
+      header.addEventListener("mousemove", handleMouseMove);
+      header.addEventListener("touchmove", handleTouchMove, {passive: false,});
     }
     return () => {
-      headerContainer.current.removeEventListener("mousemove", handleMouseMove);
-      headerContainer.current.removeEventListener("touchmove", handleTouchMove, {passive: false,});
+      header.removeEventListener("mousemove", handleMouseMove);
+      header.removeEventListener("touchmove", handleTouchMove, {passive: false,});
     }
   }, [spanArray]);
 
