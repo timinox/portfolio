@@ -4,8 +4,7 @@
   status = 200
   headers = {Access-Control-Allow-Origin= "*"}
 
-  [[headers]]
+[[headers]]
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Credentials = "true"

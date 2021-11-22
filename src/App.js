@@ -132,7 +132,6 @@ function App() {
 
   useEffect(() => {
     document.querySelector("body").classList.remove("no-scroll");
-
   }, []);
   return ( <div
       className={
