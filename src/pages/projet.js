@@ -114,9 +114,8 @@ const VideoParams = ({projectName, mediaName}) => {
   } 
 }
 
-let indexPrevProject;
-let indexNextProject;
-const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
+let indexPrevProject, indexNextProject, currentPage, notfound;
+const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
   const { scrollYProgress } = useViewportScroll();
   const [windowW, setWindowW] = useState(window.innerWidth);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
@@ -131,6 +130,9 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
       currentPage = projet;
       indexProject = index;
     }
+    if(index == data[1].length - 1){
+      //console.log("not slug project find in slug url")
+    }
   });
 
   if (indexProject === 0) {
@@ -143,7 +145,11 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
   } else {
     indexNextProject = indexProject + 1;
   }
-
+  const contentObj = () => {
+    if(currentPage){
+    return currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>");
+    }
+  }
   function handleScroll() {
     if (canScroll === false) {
       document.querySelector("body").classList.add("no-scroll");
@@ -157,11 +163,11 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
     setWindowW(window.innerWidth);
   }
   if (transitionPage) {
-    console.log("transi projet");
+    //console.log("transi projet");
     window.scrollTo(0, 0);
     logoAnim.hidden.y = 0;
   } else {
-    console.log("transi home");
+    //console.log("transi home");
     exitProjet = { y: window.innerHeight };
   }
 
@@ -180,15 +186,13 @@ const Projet = ({ data, currentPage, toggleTheme, setgradientDegrees }) => {
     }
   }, []);
 
-  const contentObj = () => {
-    return currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>");
-  }
-
   return (
     <>
-      {!currentPage && slug ? (
+      {!currentPage && !slug ? (
+        <>
         <PageNotFound toggleTheme={toggleTheme} />
-      ) : (
+        </>
+      ) : ( 
         <>
           <Link to={`/`} className="header-project">
             <motion.h1 initial="hidden" animate="show" variants={logoAnim}>
