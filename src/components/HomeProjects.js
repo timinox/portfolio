@@ -23,7 +23,7 @@ const textMotion = {
   },
 };
 
-function ImagesProjects({ slug, imgUrl, index }) {
+function ImagesProjects({ slug, name, imgUrl, index }) {
   {
     if (imgUrl.includes(".mp4")) {
       return (
@@ -41,7 +41,7 @@ function ImagesProjects({ slug, imgUrl, index }) {
         <div className="container-img" key={index}>
           <img
             src={window.location.origin + `/img/${slug}-${imgUrl}`}
-            alt="alt text"
+            alt={`Projet ${name}`}
           />
         </div>
       );
@@ -65,8 +65,9 @@ function MainImgProject({ projet, index }) {
       <ProgressiveImage
         src={window.location.origin + `/img/${projet.slug}-thumb-hd.jpg`}
         placeholder={window.location.origin + `/img/${projet.slug}-thumb.jpg`}
+        alt={`Projet ${projet.name} | thumbnail`}
       >
-        {(src) => <motion.img src={src} alt="alt text" />}
+        {(src) => <motion.img src={src} alt={`Projet ${projet.name} | thumbnail`} />}
       </ProgressiveImage>
     </div>
   );
@@ -155,6 +156,7 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
             return (
               <ImagesProjects
                 slug={projet.slug}
+                name={projet.name}
                 imgUrl={img}
                 key={index}
                 image={image}
@@ -167,7 +169,7 @@ function ContentMarquee({ projet, index, image, containerInfo }) {
   );
 }
 
-const HomeProjects = ({ data, projets, imageDetails }) => {
+const HomeProjects = ({ data, projets }) => {
   const projectsContainer = useRef(null);
   const { current } = projectsContainer;
   const [containerInfo, setContainerInfo] = useState({ top: 0, end: 0 });
@@ -197,7 +199,6 @@ const HomeProjects = ({ data, projets, imageDetails }) => {
         projets.map((projet, i) => {
           return (
             <ContentMarquee
-              imageDetails={imageDetails}
               projet={projet}
               key={i}
               index={i}

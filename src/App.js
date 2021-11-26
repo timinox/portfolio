@@ -14,10 +14,10 @@ import PageNotFound from "./pages/PageNotFound";
 import TimData from "./TimData.js";
 
 //analytics
-import RouteAnalytics from "./pages/RouteAnalytics";
-import ReactGA from 'react-ga';
-const TRACKING_ID = "G-CP9BK30SFK"; 
-ReactGA.initialize(TRACKING_ID);
+// import RouteAnalytics from "./pages/RouteAnalytics";
+// import ReactGA from 'react-ga';
+// const TRACKING_ID = "G-CP9BK30SFK"; 
+// ReactGA.initialize(TRACKING_ID);
 
 //global var
 let preloaded = 0;
@@ -31,11 +31,11 @@ const getIndexImg = (num) => {
 };
 function preLoaderImg() {
   for (let i = 1; i < 61; i++) {
-      let url = window.location.origin + "/sprite-main/" + getIndexImg(i) + ".png";
-      var tempImage = new Image();
-      tempImage.src = url.toString();
-      nodeImgs.push(tempImage);
-    }
+    let url = window.location.origin + "/sprite-main/" + getIndexImg(i) + ".png";
+    var tempImage = new Image();
+    tempImage.src = url.toString();
+    nodeImgs.push(tempImage);
+  }
 }
 preLoaderImg();
 
@@ -131,6 +131,7 @@ function App() {
   }, [data, fontsLoaded, imgLoaded])
 
   useEffect(() => {
+    window.scrollTo(0,0);
     document.querySelector("body").classList.remove("no-scroll");
   }, []);
   return ( <div
@@ -167,7 +168,6 @@ function App() {
 
       {!isLoading && (
         <Router>
-          <RouteAnalytics/>
           <Route
             render={({ location }) => (
               <AnimatePresence initial={true}>

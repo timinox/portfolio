@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#C4C4C4" />
     <meta name="msapplication-TileColor" content="#da532c">
-
     <meta name="description" content="Je me forme sur l'intégration web et le motion design, tout ça en ayant une formation de graphiste."/>
+    
+    <!-- configure root directory file on routing -->
     <base href="/" />
     <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#1b2229">
     <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/apple-touch-icon.png">
@@ -17,14 +18,26 @@
     <!--manifest.json provides metadata used when your web app is installed on a user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/ -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- Notice the use of %PUBLIC_URL% in the tags above. It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <!-- preload fonts -->
+    <link rel="preload" href="%PUBLIC_URL%/fonts/MonumentExtended-Black.ttf" as="font" type="font/truetype" crossorigin>
+    <link rel="preload" href="%PUBLIC_URL%/fonts/DarkerGrotesque-Regular.ttf" as="font" type="font/truetype" crossorigin>
+    <link rel="preload" href="%PUBLIC_URL%/fonts/Anybody[slnt,wdth,wght].ttf" as="font" type="font/truetype" crossorigin>
+    <link rel="preload" href="%PUBLIC_URL%/fonts/clash-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CP9BK30SFK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will work correctly both with client-side routing and a non-root public URL. Learn how to configure a non-root public URL by running `npm run build`. -->
+      gtag('config', 'G-CP9BK30SFK');
+    </script>
+
     <title>Timothé Joubert</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Votre navigateur ne prend   pas en compte Javascript, changez vos paramètres ou changez de navigateur</noscript>
     <div id="root"></div>
   </body>
 </html>

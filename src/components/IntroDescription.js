@@ -130,6 +130,7 @@ const IntroDescription = ({ content }) => {
             href="https://www.instagram.com/thim_ox/"
             target="_blank"
             rel="noopener noreferrer"
+            title="Ma page instagram"
           >
             <svg
               width="20"
@@ -163,6 +164,7 @@ const IntroDescription = ({ content }) => {
             href="https://www.linkedin.com/in/timoth%C3%A9-joubert-3b3826170/"
             target="_blank"
             rel="noopener noreferrer"
+            title="Ma page linkedin"
           >
             <svg
               width="21"
@@ -193,6 +195,7 @@ const IntroDescription = ({ content }) => {
             href="https://github.com/timothejoubert"
             target="_blank"
             rel="noopener noreferrer"
+            title="Ma page github"
           >
             <svg
               width="20"

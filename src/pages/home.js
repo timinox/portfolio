@@ -8,8 +8,6 @@ import LastPartHome from "../components/LastPartHome";
 import Footer from "../components/Footer";
 
 const Home = ({
-  imageDetails,
-  image,
   data,
   toggleTheme,
   darkTheme,
@@ -31,7 +29,6 @@ const Home = ({
         <HomeProjects
           data={data}
           projets={data[1]}
-          imageDetails={imageDetails}
         />
         <LastPartHome data={data} />
       </main>
