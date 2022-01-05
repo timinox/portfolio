@@ -55,15 +55,16 @@ function RepeatDiv({ posX, posY, index, mobilInsta }) {
 let i = 1;
 let cDiv, newDiv;
 function Insta() {
+  const [mouseIn, setMouseIn] = useState(false);
   const [mousePos, setmousePos] = useState({ x: null, y: null });
   const [customDiv, setCustomDiv] = useState([]);
   const [mobilInsta, setMobilInsta] = useState();
-  const [stopMove, setStopMove] = useState(true);
   const containerInsta = useRef(null);
   const help = useRef(null);
   let timerEnd;
 
   const cloneEl = () => {
+    
     cDiv = customDiv;
     newDiv = {
       copyNumber: i++,
@@ -73,24 +74,24 @@ function Insta() {
     cDiv.push(newDiv);
     setCustomDiv(cDiv);
 
-    clearTimeout(timerEnd);
     help.current.classList.remove("help-on");
-
     containerInsta.current.classList.remove("hide");
-    timerEnd = setTimeout(mouseStopped, 3000);
+
+    clearTimeout(timerEnd);
+
+    if(!mouseIn){
+      timerEnd = setTimeout(mouseStopped, 3000);
+    }
   };
 
   function mouseStopped() {
-    if (stopMove) {
       if(cDiv.length < 2){
+        clearTimeout(timerEnd);
         help.current.classList.add("help-on");
       }
       if(window.innerWidth > 800){
         containerInsta.current.classList.add("hide");
       }
-    } else {
-      setStopMove(true);
-    }
   }
 
   function removeImg() {
@@ -135,7 +136,6 @@ function Insta() {
   useEffect(() => {
     if(!mobilInsta){
       removeImg();
-      
       containerInsta.current.addEventListener("mousemove", handleMouseMove); 
       if(window.innerWidth < 800){
         runMobilAnim();
@@ -156,7 +156,8 @@ function Insta() {
         href="https://www.instagram.com/thim_ox/"
         target="_blank"
         rel="noopener noreferrer"
-        // onMouseMove={MoveOnInsta}
+        onMouseEnter={ ()=> setMouseIn(true)}
+        onMouseLeave={ ()=> setMouseIn(false)}
       >
         {mobilInsta ? 
         <>

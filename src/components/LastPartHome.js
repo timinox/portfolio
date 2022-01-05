@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./LastPartHome.css";
 
 import { mapRange, clamp } from "../utils";
@@ -142,6 +142,7 @@ let startContainer;
 let stopContainer;
 
 function Contact({ data }) {
+  let [changeImg, setChangeImg] = useState(0);
   const { scrollYProgress } = useViewportScroll();
   const containerContact = useRef(null);
   // const containerImg = useRef(null);
@@ -178,6 +179,10 @@ function Contact({ data }) {
   useEffect(() => {
     initContainerSize();
   });
+
+  window.onscroll = () => {
+    setChangeImg(changeImg++);
+  };
 
   const getIndexImg = (num) => {
     if (num < 10) {

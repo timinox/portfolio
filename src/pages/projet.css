@@ -148,7 +148,7 @@
 	height: 2px;
 	bottom: -2px;
 	left: 0;
-	background-color: var(--light-color-8);
+	background-color: var(--accent-color);
 	transform-origin: bottom right;
 	transition: transform 0.25s ease-out;
 }
@@ -202,6 +202,7 @@
 	font-family: "Anybody", "Poppins", "Monument", sans-serif;
 	font-variation-settings: 'wght' 350, 'wdth' 110; 
 	font-size: 1.8rem;
+	color: var(--accent-color);
 }
 .switch-project a:hover h3{
 	animation: switchProject 1s infinite alternate;

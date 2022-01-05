@@ -101,6 +101,8 @@ font-weight: 400;
 
   --bg-color: #1B2229;
 
+  --accent-color: rgb(232, 211, 37);
+
   --width-default: 1px;
   --border-: solid var(--dark-color) var(--width-default);
 
@@ -195,7 +197,7 @@ li{
 .light_mode .grain-effect{
   mix-blend-mode: color-burn;
   filter: contrast(84%) brightness(250%);
-  background: linear-gradient( var(--angleGradient), #000000d6, #fff0), url('./grain.svg');
+  /* background: linear-gradient( var(--angleGradient), #000000d6, #fff0), url('./grain.svg'); */
   opacity: 0.3;
 }
 /* .grain-effect::after{

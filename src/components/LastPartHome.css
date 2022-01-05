@@ -81,7 +81,7 @@
     position: absolute;
     left: -13px;
     width: 2px;
-    background-color: var(--light-color);
+    background-color: var(--accent-color);
     top: 0;
     height: 100%;
   }
@@ -172,7 +172,7 @@
       position: absolute;
       right: 0px;
       width: 4px;
-      background-color: var(--light-color);
+      background-color: var(--accent-color);
       top: 0;
       height: 100%;
     }

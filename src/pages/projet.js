@@ -121,7 +121,6 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
   const [canScroll, setCanScroll] = useState(false);
   const [transitionPage, setTransipage] = useState(null);
-
   let slug = useRouteMatch(`/projet/:slug`).params.slug;
   let indexProject;
 
@@ -186,6 +185,8 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
     if(currentPage){
       document.title = "Timothé Joubert | " + currentPage.name;
     }
+    console.log("projet component in useEffect");
+
   }, [setgradientDegrees]);
 
   return (

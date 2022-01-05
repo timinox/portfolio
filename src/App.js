@@ -70,14 +70,14 @@ function App() {
     }
     //console.log("color theme loaded", window.localStorage.getItem("website_theme"));
   }
-  window.onscroll = () => {
-    let prc = Math.floor(
-      (window.pageYOffset / (document.body.clientHeight - window.innerHeight)) *
-        100
-    );
-    let degrees = mapRange(prc, 0, 100, 135, 425);
-    setgradientDegrees(degrees);
-  };
+  // window.onscroll = () => {
+  //   let prc = Math.floor(
+  //     (window.pageYOffset / (document.body.clientHeight - window.innerHeight)) *
+  //       100
+  //   );
+  //   let degrees = mapRange(prc, 0, 100, 135, 425);
+  //   setgradientDegrees(degrees);
+  // };
 
   const initData = () => {
     setData(TimData)
@@ -118,8 +118,6 @@ function App() {
 
     //init fonts
     window.addEventListener("load", initFont);
-
-    //console.log(data, fontsLoaded, imgLoaded);
     
     if(data.length > 1 && fontsLoaded && imgLoaded){
       setIsloading(false);
@@ -134,17 +132,19 @@ function App() {
     window.scrollTo(0,0);
     document.querySelector("body").classList.remove("no-scroll");
   }, []);
+
   return ( <div
       className={
         darkTheme ? "container-pages light_mode" : "container-pages dark_mode"
       }
     >
-      <div
+      {/* <div
         className="grain-effect"
         style={{
           "--angleGradient": gradientDegrees + "deg",
+          "background": `linear-gradient( var(--angleGradient), #000000d6, #fff0), url(${grain})`
         }}
-      ></div>
+      ></div> */}
       <AnimatePresence>
         {isLoading && (
           <motion.div

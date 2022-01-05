@@ -85,7 +85,7 @@
     /* font-variation-settings: 'wght' 650; */
     letter-spacing: 1px;
     font-size: 1.2em;
-    background-color: var(--light-color);
+    background-color: var(--accent-color);
     color: var(--bg-color);
     padding: 3px 0px;
     top: -40px;
