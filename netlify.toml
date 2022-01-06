@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/pogo"
+  to = "https://pogotes-moi-cette-fonte.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
