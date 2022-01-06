@@ -3,7 +3,7 @@ import { mapRange, myDist } from "../utils";
 
 import "./IntroDescription.css";
 
-const LetterItem = ({cursor, letterData}) => {
+const LetterItem = ({index, cursor, letterData}) => {
   let currentLetter = useRef(null);
   let maxDist = 70;
 
@@ -40,6 +40,7 @@ const LetterItem = ({cursor, letterData}) => {
     <span 
       ref={currentLetter} 
       style={{
+        "--index-letter": index,
         display: letterData.value === " " && window.innerWidth > 600  ? "block" : "inline", 
         fontVariationSettings: `"wght" ${letterData.weight}, "wdth" ${letterData.width}, "slnt" ${letterData.slant}`
       }} 
@@ -53,7 +54,7 @@ const WordItem = ({cursor, letterData}) => {
   return(
     <>
       {letterData.length > 1 && letterData.map( (el, i) => {
-          return <LetterItem cursor={cursor} key={i} letterData={el}/>
+          return <LetterItem cursor={cursor} index={i} key={i} letterData={el}/>
       })}
     </>
   )
@@ -118,7 +119,7 @@ const IntroDescription = ({ content }) => {
       domaine.removeEventListener("mousemove", handleCursor);
       domaine.removeEventListener("touchmove", handleTCursor, {passive: false,});
     }
-  });
+  }, []);
 
 
   return (
@@ -226,7 +227,7 @@ const IntroDescription = ({ content }) => {
               Je crée des systèmes graphiques innovants en alliant
             </h2>
           )}
-        <div className="about-support" >
+        <div className={windowW > 600 ? "about-support" : "about-support anim-letter"}>
           {Allword.length > 1 && Allword.map( (el, i) => {
             return(
               <h2 key={i} id={el.id}>

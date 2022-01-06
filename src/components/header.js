@@ -8,15 +8,21 @@ import BtnSwitchColor from "./BtnSwitchColor";
 
 import "./header.css";
 
-const SpanItem = ({children, cursor, spanClass, spanData}) => {
+const SpanItem = ({isMobil, index, children, cursor, spanClass, spanData}) => {
   let currentSpan = useRef(null);
   let maxDist = window.innerWidth/4;
 
   const changeStyle = () => {
-    spanData.opacity = getAttr(spanData.dist, 0.06, 0.1);
-    spanData.width = getAttr(spanData.dist, 80, 200);
-    spanData.weight = getAttr(spanData.dist, 250, 900);
-    spanData.slant = mapRange(getAttr(spanData.dist, 0, 10), 0, 10, 0, -10);
+    // console.log("outside change", isMobil);
+    if(!isMobil){
+      // console.log("outside change", isMobil)
+      spanData.opacity = getAttr(spanData.dist, 0.06, 0.1);
+      spanData.width = getAttr(spanData.dist, 80, 200);
+      spanData.weight = getAttr(spanData.dist, 250, 900);
+      spanData.slant = mapRange(getAttr(spanData.dist, 0, 10), 0, 10, 0, -10);
+    }else{
+      spanData.opacity = 0.2;
+    }
   }
 
   const getAttr = (dist, min, max) => {
@@ -48,6 +54,7 @@ const SpanItem = ({children, cursor, spanClass, spanData}) => {
       ref={currentSpan}
       className={spanClass} 
       style={{
+        "--index-word": index,
         position: "relative",
         opacity: spanData.opacity,
         fontVariationSettings: `"wght" ${spanData.weight}, "wdth" ${spanData.width}, "slnt" ${spanData.slant}`
@@ -55,15 +62,8 @@ const SpanItem = ({children, cursor, spanClass, spanData}) => {
     >
       {children}
       {/* <span style={{
-        position:"absolute", 
-        display: "block",
-        left:-5,
-        right:-5,
-        top:-5,
-        bottom:-5,
-        // border: "10px solid red",
-        zIndex: -2,
-        backgroundColor: "black",
+        position:"absolute", display: "block",left:-5,right:-5,top:-5,bottom:-5,
+        border: "10px solid red",zIndex: -2,backgroundColor: "black",
         }}></span> */}
     </span>
     </>
@@ -73,6 +73,7 @@ const SpanItem = ({children, cursor, spanClass, spanData}) => {
 
 const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
   const headerContainer = useRef(null);
+  const [isMobil, setIsMobil] = useState(window.innerWidth < 800);
   const [cursor, setCursor] = useState({
     x: window.innerWidth,
     y: window.innerHeight,
@@ -94,9 +95,11 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
 
   let spanArray = [];
   const printSpan = () => {
-    let nb = 64;
-    if(window.innerWidth < 600){
-      nb = 40;
+    let nb;
+    if(isMobil){
+      nb = 36;
+    }else{
+      nb = 84;
     }
     for (var i = 0; i < nb; i++) {
       let sItem = {
@@ -116,17 +119,24 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
   };
   printSpan();
 
+  const mobileSize = () => {
+    window.innerWidth > 800 ? setIsMobil(false) :  setIsMobil(true);  
+  }
+
   useEffect(() => {
+    mobileSize();
     if(headerContainer.current){
       var header = headerContainer.current;
+      window.addEventListener("resize", mobileSize)
       header.addEventListener("mousemove", handleMouseMove);
       header.addEventListener("touchmove", handleTouchMove, {passive: false,});
     }
     return () => {
+      document.removeEventListener("resize", mobileSize)
       header.removeEventListener("mousemove", handleMouseMove);
       header.removeEventListener("touchmove", handleTouchMove, {passive: false,});
     }
-  }, [spanArray]);
+  }, [isMobil]);
 
   return (
     <header ref={headerContainer}>
@@ -137,11 +147,12 @@ const Header = ({ toggleTheme, data, darkTheme, pageDelay }) => {
           scale: 1,
           opacity: 1,
         }}
+        className={isMobil ? 'active-anim' : ""} 
       >
         {spanArray.length > 1 && (
           spanArray.map( (content, i) => {
             return( 
-              <SpanItem key={i} spanClass={`spanItem-${i}`} spanData={content} cursor={cursor}>Tim</SpanItem>
+              <SpanItem isMobil={isMobil} key={i} index={i} spanClass={`spanItem-${i}`} spanData={content} cursor={cursor}>Tim</SpanItem>
             )
           })
         )}
