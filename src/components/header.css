@@ -84,7 +84,7 @@
   }
   #bg-tim.active-anim span{
     width: min-content;
-    animation: mobileAnim 2s calc(var(--index-word)*-100ms) ease-in-out infinite alternate;
+    animation: mobileAnim 2s calc(var(--index-word)*100ms) ease-in-out infinite alternate;
   }
   @keyframes mobileAnim {
     from {
