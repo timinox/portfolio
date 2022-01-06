@@ -1,7 +1,3 @@
-[[redirects]]
-  from = "/pogo"
-  to = "https://pogotes-moi-cette-fonte.netlify.app/"
-  status = 301
 
 [[redirects]]
   from = "/*"
