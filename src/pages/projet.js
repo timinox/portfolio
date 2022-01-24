@@ -146,11 +146,10 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
   } else {
     indexNextProject = indexProject + 1;
   }
-  const contentObj = () => {
-    if(currentPage){
-    return currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>");
-    }
-  }
+
+  const contentObj = {
+    __html: currentPage.description.replace(/(?:\r\n|\r|\n)/g, "<br>"),
+  };
   function handleScroll() {
     if (canScroll === false) {
       document.querySelector("body").classList.add("no-scroll");
@@ -297,7 +296,7 @@ const Projet = ({ data, toggleTheme, setgradientDegrees }) => {
                     )}
                   </div>
                   <div>
-                    <p>{contentObj()}</p>
+                    <p dangerouslySetInnerHTML={contentObj}></p>
 
                   </div>
                 </div>
